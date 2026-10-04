@@ -1,0 +1,4 @@
+# Pendente: definir PostgreSQL, API, worker CPU, IdP e seus perfis.
+# Este arquivo reserva a configuração; ainda não inicia uma aplicação.
+name: labia
+services: {}

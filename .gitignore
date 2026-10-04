@@ -1,0 +1,72 @@
+# Pastas locais solicitadas: ferramentas e material de referência
+/.github-cleanup/
+/.tools/
+/999module_study/
+
+# Variáveis de ambiente e credenciais
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+service-account*.json
+
+# Python
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Node / frontend
+node_modules/
+dist/
+.vite/
+coverage/
+*.tsbuildinfo
+
+# Builds locais Go
+/services/api-go/bin/
+/services/api-go/build/
+
+# Cache e arquivos temporários
+.cache/
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+
+# Terraform: manter .terraform.lock.hcl versionado
+.terraform/
+*.tfstate
+*.tfstate.*
+*.tfplan
+crash.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+*.tfvars
+*.tfvars.json
+!*.example.tfvars
+
+# Dados e artefatos grandes: manter manifests e cards versionados
+/data/raw/
+/data/processed/
+/data/private/
+/artifacts/
+/checkpoints/
+/weights/
+/models/weights/
+*.safetensors
+*.gguf
+*.bin
+*.pt
+*.pth
