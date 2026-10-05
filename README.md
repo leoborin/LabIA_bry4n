@@ -83,7 +83,7 @@ Diretórios ainda vazios usam `.gitkeep`. Os manifests de dependências, contrat
 
 ## Como começar
 
-Leia este README e [agent.md](agent.md). Escolha uma fatia pequena do checklist, implemente-a e registre sua verificação em [docs/evidence](docs/evidence/README.md).
+Leia este README e [AGENTS.md](AGENTS.md). Escolha uma fatia pequena do checklist, implemente-a e registre sua verificação em [docs/evidence](docs/evidence/README.md).
 
 `.env.example` apresenta apenas variáveis planejadas e valores de exemplo. `compose.yaml` ainda não define serviços. O `Makefile` oferece somente ajuda. O quickstart executável será documentado quando a primeira integração real estiver pronta.
 
