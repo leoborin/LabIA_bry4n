@@ -3,7 +3,7 @@
 import { Calendar, Code, FileText, User, Clock } from 'lucide-react';
 import RadialOrbitalTimeline from '@/components/ui/radial-orbital-timeline';
 
-// Supplied example data. These statuses/energy values are not LabIA results.
+// Supplied example data. These statuses/energy values are not LabAI bry4n results.
 const timelineData = [
   {
     id: 1,
@@ -67,7 +67,7 @@ export function RadialOrbitalTimelineDemo() {
     <figure className="orbital-demo">
       <RadialOrbitalTimeline timelineData={timelineData} className="h-[560px]" />
       <figcaption>
-        Dados de exemplo · status e energia ilustrativos, sem execuções do LabIA.
+        Dados de exemplo · status e energia ilustrativos, sem execuções do LabAI bry4n.
       </figcaption>
     </figure>
   );

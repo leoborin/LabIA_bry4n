@@ -13,12 +13,12 @@ WORKDIR /app
 COPY services/api-go/go.mod ./
 COPY services/api-go/cmd ./cmd
 COPY services/api-go/internal ./internal
-RUN go test ./... && CGO_ENABLED=0 go build -buildvcs=false -trimpath -ldflags="-s -w" -o /out/labia ./cmd/api
+RUN go test ./... && CGO_ENABLED=0 go build -buildvcs=false -trimpath -ldflags="-s -w" -o /out/labai-bry4n ./cmd/api
 
 FROM scratch
-COPY --from=api-build /out/labia /labia
+COPY --from=api-build /out/labai-bry4n /labai-bry4n
 COPY --from=web-build /app/dist /web
 ENV PORT=8080 WEB_DIST=/web
 USER 65532:65532
 EXPOSE 8080
-ENTRYPOINT ["/labia"]
+ENTRYPOINT ["/labai-bry4n"]

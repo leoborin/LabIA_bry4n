@@ -2,6 +2,8 @@
 
 **Estado:** primeira casca implementada e verificada localmente. React/TypeScript/Vite com catálogo real da API Go, planos de laboratórios, arquitetura e consulta de saúde. Autenticação, runs e resultados permanecem pendentes.
 
+Identidade: **LabAI bry4n**, com bry4n em laranja e abertura explicando o objetivo do laboratório. Nome do pacote: `@labai-bry4n/web`; marca compartilhada em `Brand`/`BrandName`. [ADR 0004](../../docs/adr/0004-identidade-labai-bry4n-e-proposito.md) e [evidência de identidade](../../docs/evidence/2026-10-12-identidade-labai-bry4n.md).
+
 ## Padrão de novas páginas
 
 Ler [AGENTS.md](AGENTS.md) e o [guia visual](../../docs/design/README.md) antes de evoluir a interface. O guia salva referências, capturas, tokens, composição, motion e critérios de interação. A decisão de stack e hospedagem está no [ADR 0002](../../docs/adr/0002-primeira-casca-frontend-e-container-unico.md).

@@ -28,7 +28,7 @@ export function CommandPalette({
     },
     {
       name: 'Arquitetura',
-      description: 'Como o LabIA se organiza',
+      description: 'Como o LabAI bry4n se organiza',
       path: '/architecture',
       Icon: Workflow,
     },
@@ -103,7 +103,7 @@ export function CommandPalette({
         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
       >
         <h2 id="command-title" className="sr-only">
-          Navegar pelo LabIA
+          Navegar pelo LabAI bry4n
         </h2>
         <div className="command-input">
           <Search size={20} aria-hidden="true" />

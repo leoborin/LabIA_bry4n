@@ -54,7 +54,7 @@ async (page) => {
   await page.keyboard.press('ArrowDown');
   await page.keyboard.press('Enter');
   await page.getByText('A API respondeu.', { exact: true }).waitFor({ timeout: 2000 });
-  check(await page.locator('.health-facts').textContent().then(text => text.includes('labia-api')), 'Ctrl+K, setas, Enter e health real');
+  check(await page.locator('.health-facts').textContent().then(text => text.includes('labai-bry4n-api')), 'Ctrl+K, setas, Enter e health real');
 
   await page.route('**/v1/labs', route => route.fulfill({ status: 503, contentType: 'application/json', body: '{}' }));
   await page.goto(`${origin}/labs`);

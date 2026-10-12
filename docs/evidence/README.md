@@ -15,6 +15,8 @@ Para cada entrega, registrar:
 
 Só acrescentar métricas após uma execução verificável. Usar `not_run` e métricas `null` para trabalho ainda não executado. A criação das pastas não conclui semanas ou marcos.
 
+Nome atual: **LabAI bry4n**, conforme [ADR 0004](../adr/0004-identidade-labai-bry4n-e-proposito.md). Registros anteriores conservam a identidade e os comandos da respectiva revisão histórica.
+
 ## Preparação do ambiente
 
 | Data | Registro | Resultado |
@@ -31,3 +33,4 @@ Só acrescentar métricas após uma execução verificável. Usar `not_run` e m�
 | 11–12/10/2026 | [Primeira casca web](2026-10-11-primeira-casca-web.md) | Build, API Go e navegação verificados; referências e configuração cloud preparadas. |
 | 12/10/2026 | [Timeline orbital fornecida](2026-10-12-timeline-orbital.md) | Tailwind/shadcn integrados; build e interação em Playwright MCP verificados; deploy pendente. |
 | 12/10/2026 | [Portfólio orbital do LabIA](2026-10-12-portfolio-orbital.md) | Sete temas reais, cards e links; 61 verificações gerais e seis de movimento/toque passaram. |
+| 12/10/2026 | [Identidade LabAI bry4n](2026-10-12-identidade-labai-bry4n.md) | Nome, laranja e propósito; frontend/API e navegação verificados. |

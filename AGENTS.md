@@ -1,14 +1,14 @@
-# Guia de trabalho para agentes — LabIA
+# Guia de trabalho para agentes — LabAI bry4n
 
 Estas instruções se aplicam a todas as pastas do repositório. O contexto do produto, o estado de implementação e o checklist principal estão em [README.md](README.md).
 
 ## Contexto e estado
 
-LabIA é um portfólio independente de engenharia de software, sistemas e IA. A arquitetura planejada combina console React/TypeScript/Vite, API Go modular, workers Python e PostgreSQL.
+LabAI bry4n é um portfólio independente de engenharia de software, sistemas e IA. A arquitetura planejada combina console React/TypeScript/Vite, API Go modular, workers Python e PostgreSQL.
 
 O repositório começou como um esqueleto. A primeira casca web e a API pública mínima foram verificadas localmente; laboratórios, runs, workers, autenticação e persistência permanecem pendentes. Consultar o README e as evidências para o estado atual. Não tratar diretórios, documentação, configurações de exemplo ou fixtures como evidência de funcionalidade concluída.
 
-Para demandas sobre a VM existente no GCP, n8n ou integração de WhatsApp, consultar a memória operacional local `.tools/memoria-vm-gcp.md` quando disponível. Ela registra acesso, serviços e capacidade observada, permanece fora do Git e não é uma dependência para trabalhar em um clone. Esses serviços externos não representam implementação do LabIA.
+Para demandas sobre a VM existente no GCP, n8n ou integração de WhatsApp, consultar a memória operacional local `.tools/memoria-vm-gcp.md` quando disponível. Ela registra acesso, serviços e capacidade observada, permanece fora do Git e não é uma dependência para trabalhar em um clone. Esses serviços externos não representam implementação do LabAI bry4n.
 
 Antes de alterar o projeto, ler `README.md`, `docs/architecture/README.md` e o guia da área afetada. O documento local `999module_study/LabIA.md` pode aprofundar o plano quando estiver disponível; ele é ignorado pelo Git e não é uma dependência para trabalhar em um clone.
 

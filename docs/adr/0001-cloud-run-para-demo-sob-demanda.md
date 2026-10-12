@@ -1,4 +1,4 @@
-# ADR 0001 — Cloud Run para a demonstração sob demanda do LabIA
+# ADR 0001 — Cloud Run para a demonstração sob demanda do LabAI bry4n
 
 - **Status:** aceito.
 - **Data:** 11/10/2026.
@@ -10,7 +10,7 @@
 
 ## Contexto
 
-O LabIA combina console React/TypeScript/Vite, API Go modular, workers Python e PostgreSQL. O repositório ainda é um esqueleto; a primeira integração deve funcionar localmente antes de ser publicada.
+O LabAI bry4n combina console React/TypeScript/Vite, API Go modular, workers Python e PostgreSQL. O repositório ainda é um esqueleto; a primeira integração deve funcionar localmente antes de ser publicada.
 
 O ambiente cloud será usado sob demanda, em janelas de demonstração. O responsável informou gasto atual próximo de R$100/mês e infraestrutura já usada por outros projetos. A VM existente tem 2 GiB de RAM, e o painel fornecido mostrou pouca margem aparente de memória e disco; sua capacidade para novos workloads não foi comprovada.
 
@@ -42,7 +42,7 @@ Worker pools, GPU e GKE ficam para necessidades ou experimentos posteriores docu
 - A API HTTP e as tarefas Python finitas correspondem aos modelos Service e Job do Cloud Run.
 - Instâncias da API podem chegar a zero, enquanto jobs executam apenas o trabalho solicitado. Isso atende ao uso esporádico previsto.
 - O projeto pode usar imagens Go/Python e concentrar o esforço nos contratos, persistência e recuperação, com menos operação de hosts e clusters.
-- A demo evita disputar recursos com as aplicações da VM atual ou exigir seu upgrade permanente apenas para hospedar o LabIA.
+- A demo evita disputar recursos com as aplicações da VM atual ou exigir seu upgrade permanente apenas para hospedar o LabAI bry4n.
 - O frontend estático pode ser distribuído pelo Firebase Hosting sem um processo de servidor para gerar suas páginas.
 
 Esses motivos sustentam a escolha para o contexto atual; não comprovam que seja a opção de menor custo em qualquer carga. As características da plataforma estão descritas na [visão geral do Cloud Run](https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run) e no [Firebase Hosting](https://firebase.google.com/docs/hosting).
@@ -51,7 +51,7 @@ Esses motivos sustentam a escolha para o contexto atual; não comprovam que seja
 
 | Alternativa | Motivo para não adotá-la na primeira demo |
 |---|---|
-| Ampliar a VM existente e hospedar a stack nela | Aumenta o gasto durante todo o mês e compartilha capacidade e falhas com aplicações atuais. O upgrade pode ser útil para essas aplicações, mas não é requisito demonstrado do LabIA. |
+| Ampliar a VM existente e hospedar a stack nela | Aumenta o gasto durante todo o mês e compartilha capacidade e falhas com aplicações atuais. O upgrade pode ser útil para essas aplicações, mas não é requisito demonstrado do LabAI bry4n. |
 | VM exclusiva ligada somente nas demos | Alternativa viável e com estimativa próxima; exige administrar sistema, deploy, TLS, backup e procedimento de início/encerramento. Cloud Run foi escolhido pela menor carga operacional. |
 | App Engine Standard | Pode atender aplicações web pequenas; adaptar esta stack não trouxe vantagem demonstrada sobre os modelos Service e Job. |
 | App Engine Flexible | Capacidade permanente e ausência de escala a zero não combinam com a janela sob demanda prevista. |

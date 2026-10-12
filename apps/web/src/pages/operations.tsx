@@ -27,7 +27,7 @@ export function OperationsPage() {
         <div className="health-panel-top">
           <div>
             <p className="eyebrow">CONSULTA DE DISPONIBILIDADE</p>
-            <h2 id="health-heading">API do LabIA</h2>
+            <h2 id="health-heading">API do LabAI bry4n</h2>
           </div>
           <button className="button button-secondary" disabled={pending} onClick={reloadHealth}>
             <RefreshCw size={15} aria-hidden="true" />

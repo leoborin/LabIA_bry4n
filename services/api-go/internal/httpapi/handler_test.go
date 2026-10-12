@@ -51,7 +51,7 @@ func TestPublicCatalogContract(t *testing.T) {
 
 func TestCompressedHTMLNegotiation(t *testing.T) {
 	dir := t.TempDir()
-	content := []byte("<!doctype html><title>LabIA</title>")
+	content := []byte("<!doctype html><title>LabAI bry4n</title>")
 	if err := os.WriteFile(filepath.Join(dir, "index.html"), content, 0644); err != nil {
 		t.Fatal(err)
 	}
@@ -97,7 +97,7 @@ func TestShellRoutingAndCacheIsolation(t *testing.T) {
 	if err := os.Mkdir(filepath.Join(dir, "assets"), 0755); err != nil {
 		t.Fatal(err)
 	}
-	for path, content := range map[string]string{"index.html": "<!doctype html><title>LabIA</title>", "assets/app-123.js": "console.log('shell')"} {
+	for path, content := range map[string]string{"index.html": "<!doctype html><title>LabAI bry4n</title>", "assets/app-123.js": "console.log('shell')"} {
 		if err := os.WriteFile(filepath.Join(dir, path), []byte(content), 0644); err != nil {
 			t.Fatal(err)
 		}

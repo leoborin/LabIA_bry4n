@@ -9,3 +9,5 @@
 - [ ] Verificar compatibilidade, autorização, idempotência e erros com testes de contrato.
 
 Os diretórios reservados não representam contratos já implementados.
+
+Identidade atual: LabAI bry4n. O campo `service` de `/healthz` passa a `labai-bry4n-api`, com OpenAPI e consumidor de QA atualizados juntos; catálogo v1 e slugs permanecem estáveis. Justificativa da alteração no [ADR 0004](../docs/adr/0004-identidade-labai-bry4n-e-proposito.md).

@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { PortfolioOrbit } from '@/components/portfolio-orbit';
 import { LayoutGroup, m, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
@@ -34,16 +34,21 @@ export function CatalogPage() {
           <Reveal>
             <p className="eyebrow">
               <span className="eyebrow-line" />
-              PORTFÓLIO DE ENGENHARIA E IA
+              UM LABORATÓRIO DE PROJETOS PRÁTICOS
             </p>
             <h1 tabIndex={-1}>
-              Da pergunta.
+              Aprender.
               <br />
-              <span>À evidência.</span>
+              <span>Na prática.</span>
             </h1>
             <p className="hero-description">
-              Projetos em engenharia de software, sistemas e inteligência artificial. Arquitetura,
-              decisões e evidências em cada etapa.
+              O LabAI bry4n é um laboratório para aprender engenharia de software, dados e IA
+              construindo projetos. Cada projeto parte de um problema e registra a solução, as
+              decisões e os testes.
+            </p>
+            <p className="hero-purpose">
+              <strong>O objetivo:</strong> transformar esse aprendizado em um portfólio técnico, com
+              código e resultados que possam ser conferidos.
             </p>
             <div className="hero-actions">
               <a href="#experimentos" className="button">
@@ -61,7 +66,7 @@ export function CatalogPage() {
             <a href="#experimentos" aria-label="Ir ao catálogo">
               <ArrowDown size={16} aria-hidden="true" />
             </a>
-            <span>Ideias em desenvolvimento.</span>
+            <span>Sete projetos ainda planejados.</span>
           </div>
         </div>
         <Reveal className="hero-object" delay={0.12}>
@@ -236,6 +241,7 @@ function ArrowUpRightIcon() {
 function MethodSection() {
   const reduced = useReducedMotion();
   const [active, setActive] = useState(0);
+  const manuallySelected = useRef(false);
   const steps = [
     {
       verb: 'Explicar.',
@@ -282,10 +288,15 @@ function MethodSection() {
             <m.button
               key={step.verb}
               className={`method-step ${active === i ? 'active' : ''}`}
-              onClick={() => setActive(i)}
+              onClick={() => {
+                manuallySelected.current = true;
+                setActive(i);
+              }}
               aria-expanded={active === i}
               aria-controls={`method-${i}`}
-              onViewportEnter={() => setActive(i)}
+              onViewportEnter={() => {
+                if (!reduced && !manuallySelected.current) setActive(i);
+              }}
               viewport={{ amount: 0.8, once: true }}
             >
               <span className="method-index mono">0{i + 1}</span>

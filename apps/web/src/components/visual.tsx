@@ -3,6 +3,14 @@ import { Braces, Database, Network, ShieldCheck, Sparkles, FileText, Layers } fr
 export const labIcons = [Network, Database, Sparkles, FileText, Braces, Layers, ShieldCheck];
 export const spring = { type: 'spring' as const, stiffness: 300, damping: 32, mass: 0.8 };
 
+export function BrandName() {
+  return (
+    <span className="brand-name">
+      Lab<span className="brand-ai">AI</span> <span className="brand-author">bry4n</span>
+    </span>
+  );
+}
+
 export function Brand({ small = false }: { small?: boolean }) {
   return (
     <span className={`brand ${small ? 'brand-small' : ''}`}>
@@ -16,9 +24,7 @@ export function Brand({ small = false }: { small?: boolean }) {
         />
         <circle cx="31" cy="11" r="3" fill="currentColor" />
       </svg>
-      <span>
-        Lab<span className="brand-ia">IA</span>
-      </span>
+      <BrandName />
     </span>
   );
 }

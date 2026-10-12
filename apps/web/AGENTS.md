@@ -1,6 +1,8 @@
-# Padrão de frontend — LabIA
+# Padrão de frontend — LabAI bry4n
 
-Antes de criar ou alterar uma tela, ler [o guia visual](../../docs/design/README.md) e o README desta área. O guia registra as referências Apple, Linear, Vercel e 21st.dev, a identidade própria do LabIA, os tokens e o contrato de motion.
+Nome oficial: LabAI bry4n. Reutilizar `Brand` e `BrandName`; manter bry4n em laranja com os tokens de contraste para fundo claro/escuro. Na abertura, explicar o laboratório, os projetos práticos e o objetivo do portfólio em linguagem direta. Decisão no [ADR 0004](../../docs/adr/0004-identidade-labai-bry4n-e-proposito.md).
+
+Antes de criar ou alterar uma tela, ler [o guia visual](../../docs/design/README.md) e o README desta área. O guia registra as referências Apple, Linear, Vercel e 21st.dev, a identidade própria do LabAI bry4n, os tokens e o contrato de motion.
 
 Preservar React/TypeScript/Vite e os componentes compartilhados. Manter CSS e tokens centralizados; adicionar bibliotecas apenas para uma responsabilidade demonstrada.
 

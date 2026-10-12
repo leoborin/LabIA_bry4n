@@ -62,6 +62,8 @@
     --line-strong: #c9cbd2;
     --accent: #2459ed;
     --accent-soft: #eef2ff;
+    --brand-author: #ba4f0d;
+    --brand-author-on-dark: #f08a40;
     --font: 'Manrope Variable', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --mono: 'SFMono-Regular', Consolas, 'Liberation Mono', monospace;
     --s1: 4px;
@@ -254,8 +256,18 @@
     width: 28px;
     height: 28px;
   }
-  .brand-ia {
+  .brand-ai {
     font-weight: 450;
+  }
+  .brand-name {
+    white-space: nowrap;
+  }
+  .brand-author {
+    color: var(--brand-author);
+    font-weight: 700;
+  }
+  .orbital-timeline .brand-author {
+    color: var(--brand-author-on-dark);
   }
   .brand-small {
     font-size: 17px;
@@ -433,6 +445,17 @@
     color: var(--muted);
     line-height: 1.8;
     letter-spacing: -0.014em;
+  }
+  .hero-purpose {
+    max-width: 385px;
+    margin-top: 16px;
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+  }
+  .hero-purpose strong {
+    color: var(--ink);
+    font-weight: 600;
   }
   .hero-actions {
     display: flex;

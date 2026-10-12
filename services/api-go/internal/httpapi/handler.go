@@ -11,7 +11,7 @@ import (
 	"strconv"
 	"strings"
 
-	"labia.local/api/internal/labs"
+	"labai-bry4n.local/api/internal/labs"
 )
 
 const Version = "0.1.0-shell"
@@ -20,7 +20,7 @@ func New(webDir string) http.Handler {
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /healthz", func(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusOK, map[string]string{
-			"status": "ok", "service": "labia-api", "version": Version, "phase": "shell",
+			"status": "ok", "service": "labai-bry4n-api", "version": Version, "phase": "shell",
 		})
 	})
 	mux.HandleFunc("GET /v1/labs", func(w http.ResponseWriter, r *http.Request) {

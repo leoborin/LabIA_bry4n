@@ -29,8 +29,8 @@ Sintaxe abaixo conferida com os comandos `gcloud help` específicos do SDK insta
 
 ```text
 gcloud meta list-files-for-upload . --quiet
-gcloud run deploy labia --source=. --project=PROJECT_ID --region=us-central1 --service-account=RUNTIME_SERVICE_ACCOUNT --cpu=1 --memory=256Mi --min=0 --min-instances=0 --max-instances=1 --concurrency=40 --timeout=30s --cpu-throttling --no-cpu-boost --allow-unauthenticated --port=8080 --labels=app=labia,phase=shell,commit=COMMIT_SHA --quiet
-gcloud run services describe labia --project=PROJECT_ID --region=us-central1 --format=json(status.url,status.latestReadyRevisionName,status.conditions,status.traffic) --quiet
+gcloud run deploy labai-bry4n --source=. --project=PROJECT_ID --region=us-central1 --service-account=RUNTIME_SERVICE_ACCOUNT --cpu=1 --memory=256Mi --min=0 --min-instances=0 --max-instances=1 --concurrency=40 --timeout=30s --cpu-throttling --no-cpu-boost --allow-unauthenticated --port=8080 --labels=app=labai-bry4n,phase=shell,commit=COMMIT_SHA --quiet
+gcloud run services describe labai-bry4n --project=PROJECT_ID --region=us-central1 --format=json(status.url,status.latestReadyRevisionName,status.conditions,status.traffic) --quiet
 ```
 
 O Dockerfile é construído remotamente pelo Cloud Build, usando versões/digests explícitos das bases. A allowlist de `.gcloudignore` foi conferida e enviou somente frontend, API e arquivos de container. `.dockerignore` restringe o contexto interno; `.tools`, estudos, prints, credenciais, `node_modules`, builds locais e Git ficam fora do upload.
@@ -42,7 +42,7 @@ Depois do deploy, verificar URL pública, revisão pronta, `GET /healthz`, sete 
 Após haver uma revisão anterior verificada, registrar seu nome e encaminhar 100% do tráfego a ela. Operação cloud ainda não exercitada:
 
 ```text
-gcloud run services update-traffic labia --project=PROJECT_ID --region=us-central1 --to-revisions=PREVIOUS_REVISION=100 --quiet
+gcloud run services update-traffic labai-bry4n --project=PROJECT_ID --region=us-central1 --to-revisions=PREVIOUS_REVISION=100 --quiet
 ```
 
 Repetir os smoke tests. Frontend e API revertem juntos. Esta casca não tem migração ou dados persistidos; futuras mudanças com banco exigirão procedimento próprio.

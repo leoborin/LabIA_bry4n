@@ -2,7 +2,7 @@
 
 // Source supplied by the user: Jatin Yadav / 21st.dev Radial Orbital Timeline.
 // Integration fixes: React 19 refs, browser timer types, keyboard, reduced motion and sizing.
-import { useState, useEffect, useRef, useId, type ElementType } from 'react';
+import { useState, useEffect, useRef, useId, type ElementType, type ReactNode } from 'react';
 import { ArrowRight, Link, Zap, Pause, Play, X } from 'lucide-react';
 import { useReducedMotion } from 'motion/react';
 import { Link as RouteLink } from 'react-router-dom';
@@ -31,7 +31,7 @@ export interface TimelineItem {
 interface RadialOrbitalTimelineProps {
   timelineData: TimelineItem[];
   className?: string;
-  heading?: string;
+  heading?: ReactNode;
   ariaLabel?: string;
   relatedLabel?: string;
 }

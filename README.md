@@ -1,8 +1,10 @@
-# LabIA
+# LabAI bry4n
 
-Portfólio de engenharia de software, sistemas distribuídos, dados e inteligência artificial, construído por meio de experimentos reproduzíveis.
+LabAI bry4n é um laboratório para aprender engenharia de software, dados e inteligência artificial construindo projetos práticos. O objetivo é transformar esse aprendizado em um portfólio técnico: mostrar o problema, explicar as decisões, publicar o código e registrar testes e resultados verificáveis.
 
 O projeto será um laboratório independente com console web, API e workers. Cada entrega deverá demonstrar três competências: **explicar** o mecanismo, **decidir** entre alternativas e **verificar** o resultado com evidências. A proposta é desenvolver capacidade técnica para discutir decisões de arquitetura, confiabilidade, qualidade de dados, IA aplicada e custo.
+
+A identidade e os identificadores internos estão registrados no [ADR 0004](docs/adr/0004-identidade-labai-bry4n-e-proposito.md).
 
 **Estado atual:** primeira casca navegável verificada localmente: console React/TypeScript/Vite, catálogo público e health em Go. Os sete laboratórios, autenticação, runs, workers e persistência permanecem **pendentes**. Nenhum modelo foi treinado ou experimento medido. O deploy aguarda definição de projeto e orçamento.
 
@@ -16,7 +18,7 @@ O projeto será um laboratório independente com console web, API e workers. Cad
 
 Começar com poucos processos e módulos bem definidos. A separação em serviços adicionais deverá ser sustentada por uma decisão documentada e uma necessidade observada.
 
-O LabIA é independente do Evolua: o acompanhamento do aprendizado pode apontar para suas evidências, mas não substitui a execução dos experimentos. O plano de referência organiza a evolução em **56 semanas**, de 05/10/2026 a 31/10/2027.
+O LabAI bry4n é independente do Evolua: o acompanhamento do aprendizado pode apontar para suas evidências, mas não substitui a execução dos experimentos. O plano de referência organiza a evolução em **56 semanas**, de 05/10/2026 a 31/10/2027.
 
 Veja o [guia de arquitetura planejada](docs/architecture/README.md).
 

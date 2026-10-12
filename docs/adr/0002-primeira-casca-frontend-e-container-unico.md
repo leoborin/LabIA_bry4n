@@ -8,7 +8,7 @@
 
 ## Contexto
 
-O responsável pediu publicar uma casca para começar a evolução do LabIA, com frontend limpo, interações refinadas e referências portáteis para futuras páginas. A stack planejada já era React/TypeScript/Vite e Go; não existe requisito de SSR. Os experimentos, autenticação, runs, workers e banco ainda não estão implementados.
+O responsável pediu publicar uma casca para começar a evolução do LabAI bry4n, com frontend limpo, interações refinadas e referências portáteis para futuras páginas. A stack planejada já era React/TypeScript/Vite e Go; não existe requisito de SSR. Os experimentos, autenticação, runs, workers e banco ainda não estão implementados.
 
 O ADR 0001 descreve a demo futura com SPA no Firebase Hosting, API no Cloud Run, Jobs e PostgreSQL externo. Para este primeiro incremento, distribuir uma SPA e uma API somente de leitura em dois produtos acrescentaria configuração e duas publicações sem benefício comprovado.
 
@@ -32,7 +32,7 @@ O [ADR 0003](0003-timeline-orbital-e-tailwind.md) substitui a proposta de camada
 
 | Item | Perfil proposto |
 |---|---|
-| Serviço | `labia`, criado separadamente das aplicações existentes |
+| Serviço | `labai-bry4n`, criado separadamente das aplicações existentes |
 | Região | `us-central1`, proposta inicial para esta casca; confirmar junto ao projeto de destino |
 | Recursos | 1 vCPU, 256 MiB, concorrência 40, timeout HTTP de 30 s |
 | Escala | Mínimo zero; máximo uma instância por revisão |
@@ -44,7 +44,7 @@ O [ADR 0003](0003-timeline-orbital-e-tailwind.md) substitui a proposta de camada
 
 O projeto e o teto financeiro ainda precisam de resposta do responsável. A sugestão de R$20/mês adicionais foi enviada, **não aprovada**. O limite de instâncias não é um teto de faturamento; builds, imagens, logs e tráfego continuam relevantes. A franquia é compartilhada na conta, inclusive com os Cloud Run existentes. [Preços oficiais](https://cloud.google.com/run/pricing).
 
-A faixa de R$20–40 do ADR 0001 incluía um perfil futuro com PostgreSQL e artefatos; não atribuir essa faixa automaticamente à casca sem banco. Custo medido do LabIA: `null`. Não foi criada infraestrutura paga para validar o código.
+A faixa de R$20–40 do ADR 0001 incluía um perfil futuro com PostgreSQL e artefatos; não atribuir essa faixa automaticamente à casca sem banco. Custo medido do LabAI bry4n: `null`. Não foi criada infraestrutura paga para validar o código.
 
 ## Alternativas
 

@@ -7,5 +7,6 @@ ADRs registram contexto, decisão, alternativas e consequências. O status de um
 | [0001 — Cloud Run para a demo sob demanda](0001-cloud-run-para-demo-sob-demanda.md) | 11/10/2026 | Aceito | Pendente |
 | [0002 — Frontend inicial e container único](0002-primeira-casca-frontend-e-container-unico.md) | 11/10/2026 | Aceito | Casca local verificada; deploy pendente |
 | [0003 — Timeline orbital e Tailwind](0003-timeline-orbital-e-tailwind.md) | 12/10/2026 | Aceito | Componente integrado na casca local; deploy pendente |
+| [0004 — Identidade LabAI bry4n e propósito](0004-identidade-labai-bry4n-e-proposito.md) | 12/10/2026 | Aceito | Marca, abertura e identificadores internos atualizados localmente |
 
 Manter a numeração sequencial. Uma decisão futura que substituir outra deve identificar o ADR anterior e o motivo da revisão.

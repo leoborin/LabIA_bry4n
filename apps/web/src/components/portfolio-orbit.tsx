@@ -8,7 +8,7 @@ import {
   ShieldCheck,
 } from 'lucide-react';
 import type { Lab } from '@/api/client';
-import { Brand } from '@/components/visual';
+import { Brand, BrandName } from '@/components/visual';
 import RadialOrbitalTimeline, { type TimelineItem } from '@/components/ui/radial-orbital-timeline';
 
 // Editorial relationships between portfolio themes, not runtime dependencies.
@@ -89,8 +89,12 @@ export function PortfolioOrbit({
         <RadialOrbitalTimeline
           timelineData={items}
           className="h-[560px]"
-          heading="PORTFÓLIO / LABIA"
-          ariaLabel="Projetos do portfólio LabIA"
+          heading={
+            <>
+              PORTFÓLIO / <BrandName />
+            </>
+          }
+          ariaLabel="Projetos do portfólio LabAI bry4n"
           relatedLabel="Projetos relacionados"
         />
       ) : (
@@ -99,7 +103,9 @@ export function PortfolioOrbit({
           role="status"
           aria-label={status === 'loading' ? 'Carregando projetos' : 'Projetos indisponíveis'}
         >
-          <span className="portfolio-placeholder-heading">PORTFÓLIO / LABIA</span>
+          <span className="portfolio-placeholder-heading">
+            PORTFÓLIO / <BrandName />
+          </span>
           <Brand />
           <p>
             {status === 'loading'

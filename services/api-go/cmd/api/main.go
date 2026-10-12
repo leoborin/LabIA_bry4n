@@ -11,7 +11,7 @@ import (
 	"syscall"
 	"time"
 
-	"labia.local/api/internal/httpapi"
+	"labai-bry4n.local/api/internal/httpapi"
 )
 
 func main() {
@@ -45,7 +45,7 @@ func main() {
 			slog.Error("shutdown failed", "error", err)
 		}
 	}()
-	slog.Info("LabIA shell listening", "port", port, "version", httpapi.Version)
+	slog.Info("LabAI bry4n shell listening", "port", port, "version", httpapi.Version)
 	if err := srv.ListenAndServe(); err != nil && !errors.Is(err, http.ErrServerClosed) {
 		slog.Error("HTTP server failed", "error", err)
 		os.Exit(1)

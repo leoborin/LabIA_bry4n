@@ -2,7 +2,7 @@ Radial Orbital Timeline
 Author: jatin-yadav05
 Source: https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline
 The source listing identifies this component as MIT-licensed (checked 2026-10-12).
-Component and demo supplied by the user; integration adjustments by LabIA.
+Component and demo supplied by the user; integration adjustments by LabAI bry4n.
 
 MIT License
 

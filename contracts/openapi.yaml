@@ -1,6 +1,6 @@
 openapi: 3.0.3
 info:
-  title: LabIA — API da primeira casca
+  title: LabAI bry4n — API da primeira casca
   version: 0.1.0-shell
   description: Catálogo público e saúde do processo. Runs, autenticação e persistência permanecem pendentes.
 paths:
@@ -33,7 +33,7 @@ components:
       required: [status, service, version, phase]
       properties:
         status: { type: string, enum: [ok] }
-        service: { type: string, enum: [labia-api] }
+        service: { type: string, enum: [labai-bry4n-api] }
         version: { type: string, enum: [0.1.0-shell] }
         phase: { type: string, enum: [shell] }
     Catalog:

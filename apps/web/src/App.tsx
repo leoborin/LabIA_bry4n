@@ -67,10 +67,10 @@ function Shell() {
   useEffect(() => {
     setMenu(false);
     document.title = location.pathname.startsWith('/architecture')
-      ? 'Arquitetura — LabIA'
+      ? 'Arquitetura — LabAI bry4n'
       : location.pathname.startsWith('/operations')
-        ? 'Operação — LabIA'
-        : 'LabIA — Da pergunta à evidência';
+        ? 'Operação — LabAI bry4n'
+        : 'LabAI bry4n — Aprender na prática';
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [location.pathname]);
   return (
@@ -80,7 +80,7 @@ function Shell() {
       </a>
       <header className="header">
         <div className="header-inner">
-          <Link to="/labs" className="brand-link" aria-label="LabIA — início">
+          <Link to="/labs" className="brand-link" aria-label="LabAI bry4n — início">
             <Brand />
           </Link>
           <nav className="desktop-nav" aria-label="Navegação principal">

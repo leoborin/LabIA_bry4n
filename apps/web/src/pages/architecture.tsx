@@ -44,7 +44,7 @@ const architectureNodes = [
     tag: 'PostgreSQL · Cloud Storage',
     Icon: Database,
     description:
-      'Guardará runs, resultados e referências dos artefatos fora das instâncias. Banco e storage ainda não foram provisionados para o LabIA.',
+      'Guardará runs, resultados e referências dos artefatos fora das instâncias. Banco e storage ainda não foram provisionados para o LabAI bry4n.',
     state: 'Planejado',
   },
 ];

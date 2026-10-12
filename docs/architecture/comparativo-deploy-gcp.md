@@ -1,10 +1,10 @@
-# Comparativo de deploy e custos do LabIA no Google Cloud
+# Comparativo de deploy e custos do LabAI bry4n no Google Cloud
 
 Data: **11/10/2026**. Estado: **comparação concluída; Cloud Run escolhido para a primeira demo**.
 
 Este documento explica as alternativas e apresenta estimativas de planejamento. A escolha da opção 1 foi formalizada no [ADR 0001 — Cloud Run para a demo sob demanda](../adr/0001-cloud-run-para-demo-sob-demanda.md). O comparativo permanece como apoio à decisão; implementação e deploy continuam pendentes.
 
-O LabIA continua sendo um esqueleto: nenhuma aplicação, infraestrutura, benchmark ou demo foi implementada ou executada nesta análise. Referências: [projeto](../../README.md), [arquitetura](README.md) e [evidência desta revisão](../evidence/2026-10-11-comparativo-deploy-gcp.md).
+O LabAI bry4n continua sendo um esqueleto: nenhuma aplicação, infraestrutura, benchmark ou demo foi implementada ou executada nesta análise. Referências: [projeto](../../README.md), [arquitetura](README.md) e [evidência desta revisão](../evidence/2026-10-11-comparativo-deploy-gcp.md).
 
 ## O que estamos tentando hospedar
 
@@ -17,7 +17,7 @@ O LabIA continua sendo um esqueleto: nenhuma aplicação, infraestrutura, benchm
 | Artefatos | Relatórios, datasets autorizados e modelos fora do Git. | Armazenamento de objetos com acesso controlado e política de retenção. |
 | Treinamento | Experimentos separados da inferência. | Jobs com recursos e duração próprios; GPU exige orçamento separado. |
 
-O usuário informou aproximadamente **R$100/mês** de gasto atual no Google Cloud, dois Cloud Run, uma VM e Firebase, e prefere **ativar o LabIA sob demanda**. Esse gasto foi informado, não conciliado com uma fatura nesta revisão. Os R$100 não representam autorização para aumentar a despesa.
+O usuário informou aproximadamente **R$100/mês** de gasto atual no Google Cloud, dois Cloud Run, uma VM e Firebase, e prefere **ativar o LabAI bry4n sob demanda**. Esse gasto foi informado, não conciliado com uma fatura nesta revisão. Os R$100 não representam autorização para aumentar a despesa.
 
 ## Diferença entre os modelos
 
@@ -38,7 +38,7 @@ O Compute Engine fornece VMs com sistema operacional, CPU, RAM e discos. Podemos
 
 **Por que evitar como primeira demo pública:** precisamos cuidar de atualizações, TLS, firewall, deploy, supervisão dos processos, backup e recuperação. Em uma VM única, um problema do host pode afetar todos os componentes. Uma máquina ligada custa durante a janela inteira, mesmo ociosa. Discos e IPs podem continuar cobrando quando ela está parada.
 
-**Aplicação ao LabIA:** opção válida para uma demo pequena em uma VM exclusiva, ligada somente durante apresentações. Na VM atual, a convivência com aplicações existentes precisa de análise de capacidade e isolamento; não basta instalar mais containers.
+**Aplicação ao LabAI bry4n:** opção válida para uma demo pequena em uma VM exclusiva, ligada somente durante apresentações. Na VM atual, a convivência com aplicações existentes precisa de análise de capacidade e isolamento; não basta instalar mais containers.
 
 ### A VM atual e o possível upgrade
 
@@ -46,13 +46,13 @@ Os dados fornecidos e a consulta de inventário confirmaram **e2-small, 2 GiB, e
 
 Esse painel não discrimina memória das aplicações, cache recuperável, swap ou limites dos containers. Conferir `MemAvailable`, consumo por processo/container, OOM, swap e histórico antes de concluir que falta RAM. A definição de `MemAvailable` está na [documentação do kernel Linux](https://www.kernel.org/doc/html/latest/filesystems/proc.html).
 
-**Avaliação:** e2-medium, com 4 GiB, é um próximo tamanho razoável se houver pressão real de memória nos serviços atuais. Não ampliar a VM apenas para acrescentar o LabIA sob demanda. CPU baixa não comprova memória disponível; RAM adicional não aumenta o disco. Um upgrade dentro dessa série requer parada e retomada da VM, com indisponibilidade planejada. [Alteração do tipo de máquina](https://docs.cloud.google.com/compute/docs/instances/changing-machine-type-of-stopped-instance).
+**Avaliação:** e2-medium, com 4 GiB, é um próximo tamanho razoável se houver pressão real de memória nos serviços atuais. Não ampliar a VM apenas para acrescentar o LabAI bry4n sob demanda. CPU baixa não comprova memória disponível; RAM adicional não aumenta o disco. Um upgrade dentro dessa série requer parada e retomada da VM, com indisponibilidade planejada. [Alteração do tipo de máquina](https://docs.cloud.google.com/compute/docs/instances/changing-machine-type-of-stopped-instance).
 
 ## App Engine: hospedar aplicações em um ambiente gerenciado
 
 App Engine organiza aplicações em serviços, versões e instâncias, com infraestrutura e escalabilidade gerenciadas. Existem dois ambientes com diferenças importantes:
 
-| Ambiente | Como funciona | Implicação para o LabIA |
+| Ambiente | Como funciona | Implicação para o LabAI bry4n |
 |---|---|---|
 | Standard | Runtimes suportados, sandbox e possibilidade de chegar a zero instâncias. | Serve a aplicações web compatíveis; dependências e processamento de fundo precisam respeitar suas restrições. |
 | Flexible | Containers executados em VMs, incluindo runtimes customizados. | Mais liberdade, mas pelo menos uma instância permanece ativa por versão em execução; não escala a zero. |
@@ -67,7 +67,7 @@ App Engine organiza aplicações em serviços, versões e instâncias, com infra
 
 Cloud Run executa containers em infraestrutura gerenciada. Podemos preservar a API Go modular e uma imagem Python compartilhada, sem criar um serviço por laboratório. Há modelos de execução diferentes: [visão geral](https://docs.cloud.google.com/run/docs/overview/what-is-cloud-run).
 
-| Modelo | O que faz | Uso no LabIA |
+| Modelo | O que faz | Uso no LabAI bry4n |
 |---|---|---|
 | Service | Responde a HTTP; pode iniciar instâncias conforme as requisições e chegar a zero com configuração adequada. | API Go; eventualmente inferência curta via HTTP. |
 | Job | Executa uma ou mais tarefas e termina. | Worker CPU em lote, avaliação, migração e tarefas operacionais. |
@@ -96,7 +96,7 @@ GKE é Kubernetes gerenciado. Trabalhamos com Pods, Deployments, Jobs, Services 
 
 **Custo:** a tarifa de gerenciamento é US$0,10 por hora de cluster, com crédito mensal elegível para Autopilot e Standard zonal. Esse crédito não paga nós, Pods, discos ou rede. Sem crédito, 730 horas representam US$73 somente de gerenciamento. Um cluster regional Standard não recebe esse crédito. [Preços oficiais](https://cloud.google.com/kubernetes-engine/pricing).
 
-**Aplicação ao LabIA:** experimento temporário de `reliability-platform`, quando houver um sistema executável para comparar. Desligar Pods não equivale a remover todos os recursos faturáveis do cluster. A comparação deve prever criação, janela de uso e encerramento.
+**Aplicação ao LabAI bry4n:** experimento temporário de `reliability-platform`, quando houver um sistema executável para comparar. Desligar Pods não equivale a remover todos os recursos faturáveis do cluster. A comparação deve prever criação, janela de uso e encerramento.
 
 ## Cloud Functions / Cloud Run functions: executar handlers por eventos
 
@@ -131,7 +131,7 @@ Podemos encaminhar `/v1/**` pelo Hosting ao Cloud Run, antes da regra geral da S
 
 ## Outros serviços: complementos, não substitutos da aplicação
 
-| Serviço | O que faz | Quando usar no LabIA |
+| Serviço | O que faz | Quando usar no LabAI bry4n |
 |---|---|---|
 | Cloud SQL for PostgreSQL | Banco PostgreSQL gerenciado. | Alternativa de persistência para API e workers; permite parar a instância de demo, mas mantém custos de storage e possivelmente IP. |
 | Cloud Storage | Armazenamento de objetos. | Artefatos autorizados e relatórios; manter manifests e hashes no Git e arquivos grandes fora dele. |
@@ -155,7 +155,7 @@ Os R$100 atuais são mantidos como base informada. Não contar com franquia Clou
 | **2. VM atual ampliada** | Firebase Hosting + API, worker CPU e PostgreSQL em containers na VM, após passar de e2-small para e2-medium e ampliar disco se necessário. | Usa máquina e operação já conhecidas; processos contínuos e controle do ambiente. | Acréscimo durante todo o mês; divide falhas e capacidade com aplicações atuais; exige backups, limites e manutenção. | **R$75–90/mês**, se ligada 730 h e disco de 16 para 32 GiB | **R$175–190/mês** |
 | **3. VM exclusiva sob demanda** | Firebase Hosting + e2-medium separada com Go, Python e PostgreSQL via Compose; ligada cerca de 20 h/mês, com disco persistente de 32 GiB. | Isola serviços atuais; reproduz a stack local; compute barato durante janela curta. | Administração de SO e deploy; startup e TLS precisam de procedimento; disco cobra fora da janela; não tem autoscaling por HTTP. | **R$20–40/mês** | **R$120–140/mês** |
 
-**Opção escolhida: opção 1**, pela combinação de operação simples e uso esporádico, conforme o ADR 0001. A opção 3 permanece como alternativa se a prioridade passar a ser aprender operação de Linux/containers ou se Cloud SQL e conectividade não couberem no orçamento real. A opção 2 faz mais sentido quando o upgrade da VM já é necessário para os serviços atuais; não foi comprovado que o LabIA exige esse aumento.
+**Opção escolhida: opção 1**, pela combinação de operação simples e uso esporádico, conforme o ADR 0001. A opção 3 permanece como alternativa se a prioridade passar a ser aprender operação de Linux/containers ou se Cloud SQL e conectividade não couberem no orçamento real. A opção 2 faz mais sentido quando o upgrade da VM já é necessário para os serviços atuais; não foi comprovado que o LabAI bry4n exige esse aumento.
 
 ### Como chegamos às estimativas
 
@@ -190,7 +190,7 @@ Se a VM exclusiva ficar ligada 730 h, só compute + disco chegam a aproximadamen
 | App Engine Flexible | Mantém ao menos uma instância ativa por versão; aumenta o custo fixo. Dimensionamento não definido, portanto custo mensal completo ainda não estimado. |
 | Cloud Run functions | Handlers pequenos podem ser baratos; banco, eventos e processamento continuam cobrando. Não tratar substituição da API por funções como economia comprovada. |
 | GKE temporário | Exemplo CPU pequeno em Autopilot: requests agregados de 2 vCPU/4 GiB por 20 h custam cerca de US$2,17; gerenciamento bruto de 20 h, US$2,00, antes do crédito elegível. Somar banco, volumes e acesso. Pode caber numa janela curta, mas dá mais trabalho que as opções 1 e 3. |
-| GKE permanente | O mesmo exemplo de requests 2 vCPU/4 GiB por 730 h representa cerca de US$79,34 ≈ R$436, antes de banco, volumes e rede, ainda que o gerenciamento seja coberto pelo crédito. É exemplo de dimensionamento, não mínimo universal nem cotação de todo o LabIA. |
+| GKE permanente | O mesmo exemplo de requests 2 vCPU/4 GiB por 730 h representa cerca de US$79,34 ≈ R$436, antes de banco, volumes e rede, ainda que o gerenciamento seja coberto pelo crédito. É exemplo de dimensionamento, não mínimo universal nem cotação de todo o LabAI bry4n. |
 | Firebase Hosting | Sem novo processo de servidor para SPA. Verificar franquia compartilhada do projeto e retenção de releases; evitar vídeos/datasets no bundle. |
 | Firebase App Hosting | Acrescenta uma stack dinâmica gerenciada, adequada a outros requisitos de frontend. Para SPA, a necessidade e o custo adicionais ainda não foram demonstrados. |
 

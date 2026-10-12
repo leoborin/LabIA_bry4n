@@ -1,12 +1,14 @@
-# Direção visual do console LabIA
+# Direção visual do console LabAI bry4n
 
 Estado: primeira casca implementada e validada localmente com Playwright MCP; deploy pendente. Decisão técnica no [ADR 0002](../adr/0002-primeira-casca-frontend-e-container-unico.md).
 
-Este guia é a referência para novas páginas. Preservar a identidade do LabIA e o comportamento compartilhado dos componentes de `apps/web/src/`. Apple, Linear e Vercel orientam qualidade sem copiar suas marcas ou assets. A timeline do 21st.dev foi fornecida pelo usuário e integrada diretamente, conforme o [ADR 0003](../adr/0003-timeline-orbital-e-tailwind.md).
+Este guia é a referência para novas páginas. Preservar a identidade do LabAI bry4n e o comportamento compartilhado dos componentes de `apps/web/src/`. Apple, Linear e Vercel orientam qualidade sem copiar suas marcas ou assets. A timeline do 21st.dev foi fornecida pelo usuário e integrada diretamente, conforme o [ADR 0003](../adr/0003-timeline-orbital-e-tailwind.md).
+
+Nome oficial: **LabAI bry4n**, com essa capitalização. Usar `Brand`/`BrandName` para a marca; `bry4n` recebe laranja, com tokens próprios para fundos claros e escuros. A identidade e o propósito estão no [ADR 0004](../adr/0004-identidade-labai-bry4n-e-proposito.md). A abertura deve explicar o que é o laboratório, como o aprendizado acontece e por que ele vira um portfólio, antes de depender de slogans ou animação.
 
 ## Referência portátil do resultado
 
-Capturas do LabIA verificadas em navegador, sem dados privados. Foram capturadas com movimento reduzido para documentar o estado final completo; as animações também foram exercitadas com movimento normal.
+Capturas do LabAI bry4n verificadas em navegador, sem dados privados. Foram capturadas com movimento reduzido para documentar o estado final completo; as animações também foram exercitadas com movimento normal.
 
 - [Catálogo desktop](previews/catalog-desktop.png).
 - [Catálogo mobile](previews/catalog-mobile.png).
@@ -24,7 +26,7 @@ Ao criar outra tela, reutilizar `PageHeading`, `Reveal`, `StatusPill`, `ErrorSta
 
 Apple, Linear e Vercel foram consultados na web e inspecionados com Playwright MCP em 11/10/2026. As capturas de benchmark ficam localmente em `.tools/visual-benchmark/`, fora do Git. A documentação e os links abaixo são a referência portátil.
 
-| Referência | O que absorvemos | Aplicação no LabIA |
+| Referência | O que absorvemos | Aplicação no LabAI bry4n |
 |---|---|---|
 | [Apple](https://www.apple.com/) | Objeto principal legível, hierarquia ampla, espaço negativo e revelação contida. | Uma abertura com tipografia expressiva e uma visualização autoral; controles sempre disponíveis. |
 | [Linear](https://linear.app/) | Continuidade entre informação e detalhe, densidade organizada e precisão das ações. | Navegação por teclado, paleta de busca e expansão de laboratório com foco preservado. |
@@ -42,7 +44,7 @@ Proporção criativa solicitada: Apple 40%, Linear 40%, Vercel 20%, como orienta
 - Tarefa: conhecer laboratórios, inspecionar seus planos, entender a arquitetura e consultar a disponibilidade real da API.
 - Superfície: aplicação web de exploração; o objeto primário é o laboratório.
 - Stack: React, TypeScript e Vite; CSS nativo para tokens/layout, Tailwind para o componente fornecido, Motion for React para continuidade e Lucide para ícones. `src/components/ui/`, aliases e `cn` estão configurados.
-- Primeiro viewport: navegação compacta, título à esquerda, portfólio orbital à direita e acesso direto ao índice. Mostrar propostas reais com estado Planejado; sem datas fictícias ou barras de energia/progresso.
+- Primeiro viewport: navegação compacta, Aprender / Na prática à esquerda, explicação de projetos, decisões e testes, objetivo explícito do portfólio e órbita à direita. Mostrar propostas reais com estado Planejado; sem datas fictícias ou barras de energia/progresso.
 - Tipografia: Manrope Variable local para display e UI; mono nativa apenas em código, identificadores e pequenos labels. Títulos amplos com tracking contido e corpo legível.
 - Material: fundo branco levemente quente, grafite, cinza e azul como destaque de marca. A cena preta e o gradiente da timeline são uma exceção localizada do componente pedido; não espalhar esse tratamento pelas demais telas.
 - Prova: dados do catálogo retornados pela API e status de saúde consultado de verdade. Planos e diagramas são identificados como previstos; nenhum run ou resultado inventado.
@@ -51,7 +53,7 @@ Proporção criativa solicitada: Apple 40%, Linear 40%, Vercel 20%, como orienta
 
 ## Conteúdo da órbita do portfólio
 
-Reutilizar `PortfolioOrbit` para representar os temas do LabIA. Labels curtos mantêm a leitura da órbita; o card apresenta nome completo, slug, resumo, tags, categoria e botão Conhecer projeto. Metadados vêm da API; os labels e relações editoriais ficam no adaptador, sem copiar textos do catálogo para outra fixture.
+Reutilizar `PortfolioOrbit` para representar os temas do LabAI bry4n. Labels curtos mantêm a leitura da órbita; o card apresenta nome completo, slug, resumo, tags, categoria e botão Conhecer projeto. Metadados vêm da API; os labels e relações editoriais ficam no adaptador, sem copiar textos do catálogo para outra fixture.
 
 | Label | Projeto |
 |---|---|
@@ -75,6 +77,7 @@ Tokens centralizados no CSS. Evitar valores e cores soltos em novas telas.
 | Texto principal | `#19191b` |
 | Texto secundário | Cinza com contraste verificável; nunca baixa opacidade para conteúdo essencial |
 | Marca | Azul `#2459ed`; uso pontual em seleção, conexões e foco |
+| Assinatura bry4n | Laranja `#ba4f0d` em fundo claro e `#f08a40` em fundo escuro; destaque localizado na marca |
 | Spacing | Base de 4 px, com ritmos de 8, 12, 16, 24, 32, 48, 64 e 96 px |
 | Raio | Pequeno em controles, moderado em superfícies de inspeção; pills somente quando têm função |
 | Tipo | Display responsivo; corpo 14–18 px e controles legíveis; marcas decorativas de diagramas menores têm equivalente textual acessível |

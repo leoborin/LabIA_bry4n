@@ -2,6 +2,8 @@
 
 **Estado:** API mínima da casca, integrada ao build do console e verificada localmente. Biblioteca padrão, Go 1.27.2; sem dependências externas e sem `go.sum` vazio. A API modular completa e os experimentos continuam pendentes.
 
+Identidade atual: **LabAI bry4n**. Módulo `labai-bry4n.local/api`; `/healthz` identifica `labai-bry4n-api`. A mudança do identificador de saúde está documentada no [ADR 0004](../../docs/adr/0004-identidade-labai-bry4n-e-proposito.md); catálogo v1, rotas e sete slugs foram preservados.
+
 ## Disponível
 
 - `GET /healthz`: saúde do processo, serviço e versão `0.1.0-shell`; não comprova banco ou workers.
