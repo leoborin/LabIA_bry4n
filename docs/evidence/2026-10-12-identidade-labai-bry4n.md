@@ -10,7 +10,7 @@ A abertura agora explica: um laboratório para aprender engenharia de software, 
 
 - Data: `2026-10-12`, fuso `America/Sao_Paulo`.
 - Commit base: `15b89abf28ea6cea6b8d9b47537f10a5622adb5d`.
-- Revisão de implementação: a registrar após criar o commit.
+- Revisão de implementação: [`9dfefa2b41fbbdcdfb2f2fc8b6e13e6e9cf8334d`](https://github.com/leoborin/LabIA_bry4n/commit/9dfefa2b41fbbdcdfb2f2fc8b6e13e6e9cf8334d), criada após revisar 46 arquivos. Este registro do hash é um commit documental posterior.
 - Windows/PowerShell, Node `22.21.0`, npm `10.9.4`, Go `1.27.2`, React `19.3.0`, TypeScript `7.0.2`, Vite `8.3.4`, Tailwind `4.3.3`.
 - Chromium `154.0.8037.58` via Playwright MCP; frontend de produção e API local na porta 8080.
 
@@ -31,6 +31,8 @@ Playwright MCP executou `scripts/qa-web-mcp.js`: **61 verificações passaram, z
 Inspeção adicional nas quatro larguras confirmou o nome LabAI bry4n, título da página, propósito visível, assinatura laranja computada como `rgb(186, 79, 13)` no header e ausência de overflow. Capturas de catálogo, busca, arquitetura e órbita foram atualizadas no [guia visual](../design/README.md).
 
 Nas rotas de catálogo, arquitetura e operação, o título e a marca usam o novo nome; o health consultado ao vivo retornou `service: labai-bry4n-api`. Revisão de 15 arquivos Markdown: UTF-8, fences consistentes e 79 links locais válidos. `git diff --check` passou.
+
+Os 46 arquivos preparados foram conferidos: nenhum padrão de chave privada/token sinalizado e nenhum print privado incluído. `git diff --cached --check` passou.
 
 A mudança de altura da abertura expôs um conflito entre seleção manual do método e seleção por entrada no scroll. A seleção manual agora tem prioridade; movimento reduzido não troca a etapa automaticamente. O fluxo correspondente voltou a passar no QA.
 
