@@ -26,7 +26,7 @@ Adotar a direção documentada no [guia visual](../design/README.md): branco que
 
 Motion for React cuida de entrada, continuidade de seleção, profundidade do mapa e expansão; CSS cuida de feedback local. Scroll nativo, poucos momentos de movimento, controles sempre acessíveis e alternativa estática em `prefers-reduced-motion`. Diálogo nativo para busca com foco contido, Escape, setas e Enter. As regras de novas páginas ficam em `apps/web/AGENTS.md`.
 
-O [ADR 0003](0003-timeline-orbital-e-tailwind.md) substitui a proposta de camadas tipográficas na abertura pelo componente Radial Orbital Timeline fornecido pelo responsável, acrescentando Tailwind e primitives shadcn. O restante da casca e a decisão de container único permanecem os mesmos. A demo usa dados de exemplo explicitamente identificados.
+O [ADR 0003](0003-timeline-orbital-e-tailwind.md) substitui a proposta de camadas tipográficas na abertura pelo componente Radial Orbital Timeline fornecido pelo responsável, acrescentando Tailwind e primitives shadcn. O restante da casca e a decisão de container único permanecem os mesmos. A abertura apresenta os sete temas do portfólio com dados do catálogo; a demo original ficou isolada.
 
 ## Perfil de publicação preparado
 

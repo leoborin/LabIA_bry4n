@@ -7,7 +7,7 @@
 Ler [AGENTS.md](AGENTS.md) e o [guia visual](../../docs/design/README.md) antes de evoluir a interface. O guia salva referências, capturas, tokens, composição, motion e critérios de interação. A decisão de stack e hospedagem está no [ADR 0002](../../docs/adr/0002-primeira-casca-frontend-e-container-unico.md).
 
 - `src/pages/`: catálogo, plano de laboratório, arquitetura, operação e estados de indisponibilidade/404.
-- `src/components/`: primitives, busca nativa e SVGs; `src/components/ui/`: timeline orbital e dependências shadcn fornecidas pelo usuário.
+- `src/components/`: primitives, busca nativa, SVGs e `portfolio-orbit.tsx`, adaptador dos sete projetos; `src/components/ui/`: timeline orbital e dependências shadcn fornecidas pelo usuário.
 - `src/api/`: cliente validado, timeout/abort, estado de consulta e dados compartilhados.
 - `src/styles.css`: tokens, layout e componentes; `src/globals.css`: Tailwind, integração de tokens shadcn e ajustes da timeline.
 - `public/`: favicon autoral; fonte Manrope local entra pelo build.
@@ -35,7 +35,11 @@ O projeto já usa TypeScript. Tailwind 4.3.3 e seu plugin Vite foram instalados 
 
 O Tailwind importa theme e utilities, sem Preflight, porque a aplicação já tem reset próprio. Essa [forma documentada de integração](https://tailwindcss.com/docs/preflight#disabling-preflight) preserva as telas existentes. As classes de pulse, ping, escala, opacidade e gradientes já são geradas pelo Tailwind; não duplicar as definições globais do exemplo, que podem conflitar com seus transforms.
 
-`RadialOrbitalTimeline` recebe `timelineData: TimelineItem[]` e `className` opcional; não exige provider adicional, imagens ou estado global. Cada item declara ícone Lucide, conteúdo, status, energia e IDs relacionados. A abertura usa `demo.tsx` com os cinco itens originais e aviso visível de dados de exemplo. Ao conectar dados reais, fornecer apenas valores efetivamente disponíveis. O catálogo abaixo continua vindo da API Go, com sete laboratórios planejados.
+`RadialOrbitalTimeline` recebe `timelineData: TimelineItem[]` e `className` opcional; não exige provider adicional, imagens ou estado global. Ícone, conteúdo, status e IDs relacionados continuam disponíveis; data e energia são opcionais. Label curto, slug, tags, texto de status e rota permitem usar a mesma interação como portfólio.
+
+A abertura usa `PortfolioOrbit`, com sete temas: Eventos, Dados, Crédito, Documentos, Agentes, Jev e Confiabilidade. Nomes, resumos e tags vêm do mesmo catálogo Go usado pela lista. Os cards mostram o estado planejado do contrato e linkam para `/labs/:slug`; as relações são editoriais, sem representar dependências em execução. Não há datas ou percentuais inventados. `demo.tsx` preserva o exemplo original isolado, sem entrar no bundle da abertura.
+
+Loading e indisponibilidade têm apresentação própria; permissão negada remove os nós. Em refresh com dados anteriores, a legenda identifica o último catálogo disponível. A [evidência do portfólio](../../docs/evidence/2026-10-12-portfolio-orbital.md) registra a validação atual.
 
 ## Escopo verificado
 
@@ -50,4 +54,4 @@ O Tailwind importa theme e utilities, sem Preflight, porque a aplicação já te
 - [ ] Telemetria, métricas de experimentos e comparação de resultados.
 - [ ] Publicação e smoke test da URL Cloud Run.
 
-`/runs/:id` e `/runs/:id/results` explicam a indisponibilidade. A timeline é uma demo visual identificada; seus status e percentuais não representam execuções ou métricas do LabIA. Não há armazenamento de dados de usuário nesta versão.
+`/runs/:id` e `/runs/:id/results` explicam a indisponibilidade. A órbita apresenta propostas do portfólio; o estado Planejado não implica implementação concluída. Não há métricas de experimentos ou armazenamento de dados de usuário nesta versão.

@@ -5,6 +5,7 @@
 import { useState, useEffect, useRef, useId, type ElementType } from 'react';
 import { ArrowRight, Link, Zap, Pause, Play, X } from 'lucide-react';
 import { useReducedMotion } from 'motion/react';
+import { Link as RouteLink } from 'react-router-dom';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -13,23 +14,34 @@ import { cn } from '@/lib/utils';
 export interface TimelineItem {
   id: number;
   title: string;
-  date: string;
+  date?: string;
+  label?: string;
+  subtitle?: string;
   content: string;
   category: string;
   icon: ElementType;
   relatedIds: number[];
   status: 'completed' | 'in-progress' | 'pending';
-  energy: number;
+  energy?: number;
+  statusLabel?: string;
+  tags?: string[];
+  href?: string;
 }
 
 interface RadialOrbitalTimelineProps {
   timelineData: TimelineItem[];
   className?: string;
+  heading?: string;
+  ariaLabel?: string;
+  relatedLabel?: string;
 }
 
 export default function RadialOrbitalTimeline({
   timelineData,
   className,
+  heading = 'INTERAÇÃO DEMONSTRATIVA',
+  ariaLabel = 'Timeline orbital demonstrativa',
+  relatedLabel = 'Connected Nodes',
 }: RadialOrbitalTimelineProps) {
   const [expandedItems, setExpandedItems] = useState<Record<number, boolean>>({});
   const [rotationAngle, setRotationAngle] = useState(0);
@@ -48,6 +60,7 @@ export default function RadialOrbitalTimeline({
   const orbitRef = useRef<HTMLDivElement>(null);
   const nodeRefs = useRef<Record<number, HTMLButtonElement | null>>({});
   const instanceId = useId();
+  const selectionOffset = radius < 80 ? 210 : radius < 140 ? 190 : 140;
   const rotating =
     autoRotate &&
     !paused &&
@@ -147,7 +160,7 @@ export default function RadialOrbitalTimeline({
       )}
       ref={containerRef}
       role="region"
-      aria-label="Timeline orbital demonstrativa"
+      aria-label={ariaLabel}
       data-rotation={rotationAngle}
       data-motion={rotating ? 'running' : 'paused'}
       data-effects={paused || reducedMotion || !visible || !pageVisible ? 'paused' : 'running'}
@@ -170,7 +183,7 @@ export default function RadialOrbitalTimeline({
       }}
     >
       <span className="absolute left-6 top-6 text-[9px] tracking-[0.16em] text-white/60">
-        INTERAÇÃO DEMONSTRATIVA
+        {heading}
       </span>
       <div className="relative w-full max-w-4xl h-full flex items-center justify-center">
         <div
@@ -179,7 +192,9 @@ export default function RadialOrbitalTimeline({
           style={{
             perspective: '1000px',
             transform:
-              activeNodeId !== null ? `translateY(-${Math.max(0, 140 - radius)}px)` : undefined,
+              activeNodeId !== null
+                ? `translateY(-${Math.max(0, selectionOffset - radius)}px)`
+                : undefined,
           }}
         >
           <div
@@ -205,6 +220,8 @@ export default function RadialOrbitalTimeline({
             const isRelated = isRelatedToActive(item.id);
             const isPulsing = pulseEffect[item.id];
             const Icon = item.icon;
+            const label = item.label ?? item.title;
+            const glowSize = item.energy === undefined ? 64 : item.energy * 0.5 + 40;
             const cardId = `${instanceId}-card-${item.id}`;
             const nodeStyle = {
               transform: `translate(${position.x}px, ${position.y}px)`,
@@ -224,10 +241,10 @@ export default function RadialOrbitalTimeline({
                   style={{
                     background:
                       'radial-gradient(circle, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 70%)',
-                    width: `${item.energy * 0.5 + 40}px`,
-                    height: `${item.energy * 0.5 + 40}px`,
-                    left: `-${item.energy * 0.25}px`,
-                    top: `-${item.energy * 0.25}px`,
+                    width: `${glowSize}px`,
+                    height: `${glowSize}px`,
+                    left: `-${(glowSize - 40) / 2}px`,
+                    top: `-${(glowSize - 40) / 2}px`,
                   }}
                 />
                 <button
@@ -235,7 +252,7 @@ export default function RadialOrbitalTimeline({
                     nodeRefs.current[item.id] = element;
                   }}
                   type="button"
-                  aria-label={`Explorar ${item.title}`}
+                  aria-label={`Explorar ${label}`}
                   aria-expanded={Boolean(isExpanded)}
                   aria-controls={isExpanded ? cardId : undefined}
                   className={`orbital-node w-10 h-10 rounded-full flex items-center justify-center
@@ -250,9 +267,9 @@ export default function RadialOrbitalTimeline({
                   <Icon size={16} aria-hidden="true" />
                 </button>
                 <div
-                  className={`pointer-events-none absolute top-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold tracking-wider transition-all duration-300 ${isExpanded ? 'text-white scale-125' : 'text-white/70'}`}
+                  className={`orbital-node-label pointer-events-none absolute top-12 left-1/2 -translate-x-1/2 whitespace-nowrap text-xs font-semibold tracking-wider transition-all duration-300 ${isExpanded ? 'text-white scale-125' : 'text-white/70'}`}
                 >
-                  {item.title}
+                  {label}
                 </div>
 
                 {isExpanded && (
@@ -267,16 +284,19 @@ export default function RadialOrbitalTimeline({
                       className="absolute -top-3 left-1/2 -translate-x-1/2 w-px h-3 bg-white/50"
                       aria-hidden="true"
                     />
-                    <CardHeader className="pb-2">
+                    <CardHeader className="orbital-card-header pb-2">
                       <div className="flex justify-between items-center gap-2">
                         <Badge className={`px-2 text-xs ${getStatusStyles(item.status)}`}>
-                          {item.status === 'completed'
-                            ? 'COMPLETE'
-                            : item.status === 'in-progress'
-                              ? 'IN PROGRESS'
-                              : 'PENDING'}
+                          {item.statusLabel ??
+                            (item.status === 'completed'
+                              ? 'COMPLETE'
+                              : item.status === 'in-progress'
+                                ? 'IN PROGRESS'
+                                : 'PENDING')}
                         </Badge>
-                        <span className="text-xs font-mono text-white/50">{item.date}</span>
+                        <span className="text-xs font-mono text-white/50">
+                          {item.date ?? item.category}
+                        </span>
                       </div>
                       <div className="flex justify-between items-center">
                         <CardTitle className="text-sm mt-2">{item.title}</CardTitle>
@@ -294,32 +314,57 @@ export default function RadialOrbitalTimeline({
                         </Button>
                       </div>
                     </CardHeader>
-                    <CardContent className="text-xs text-white/80">
+                    <CardContent className="orbital-card-content text-xs text-white/80">
+                      {item.subtitle && (
+                        <p className="mb-2 text-[10px] font-mono text-white/50">{item.subtitle}</p>
+                      )}
                       <p>{item.content}</p>
-                      <div className="mt-4 pt-3 border-t border-white/10">
-                        <div className="flex justify-between items-center text-xs mb-1">
-                          <span className="flex items-center">
-                            <Zap size={10} className="mr-1" aria-hidden="true" />
-                            Energy Level
-                          </span>
-                          <span className="font-mono">{item.energy}%</span>
-                        </div>
+                      {item.tags && item.tags.length > 0 && (
                         <div
-                          className="w-full h-1 bg-white/10 rounded-full overflow-hidden"
-                          aria-hidden="true"
+                          className="mt-3 flex flex-wrap gap-1.5"
+                          aria-label="Temas e ferramentas"
                         >
-                          <div
-                            className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
-                            style={{ width: `${item.energy}%` }}
-                          />
+                          {item.tags.map((tag) => (
+                            <span
+                              key={tag}
+                              className="rounded border border-white/15 px-2 py-1 text-[10px] text-white/70"
+                            >
+                              {tag}
+                            </span>
+                          ))}
                         </div>
-                      </div>
-                      {item.relatedIds.length > 0 && (
+                      )}
+                      {item.energy !== undefined && (
                         <div className="mt-4 pt-3 border-t border-white/10">
+                          <div className="flex justify-between items-center text-xs mb-1">
+                            <span className="flex items-center">
+                              <Zap size={10} className="mr-1" aria-hidden="true" />
+                              Energy Level
+                            </span>
+                            <span className="font-mono">{item.energy}%</span>
+                          </div>
+                          <div
+                            className="w-full h-1 bg-white/10 rounded-full overflow-hidden"
+                            aria-hidden="true"
+                          >
+                            <div
+                              className="h-full bg-gradient-to-r from-blue-500 to-purple-500"
+                              style={{ width: `${item.energy}%` }}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      {item.relatedIds.length > 0 && (
+                        <div
+                          className={cn(
+                            'border-t border-white/10',
+                            item.href ? 'mt-3 pt-2' : 'mt-4 pt-3',
+                          )}
+                        >
                           <div className="flex items-center mb-2">
                             <Link size={10} className="text-white/70 mr-1" aria-hidden="true" />
                             <h4 className="text-xs uppercase tracking-wider font-medium text-white/70">
-                              Connected Nodes
+                              {relatedLabel}
                             </h4>
                           </div>
                           <div className="flex flex-wrap gap-1">
@@ -339,7 +384,7 @@ export default function RadialOrbitalTimeline({
                                     toggleItem(relatedId);
                                   }}
                                 >
-                                  {relatedItem.title}
+                                  {relatedItem.label ?? relatedItem.title}
                                   <ArrowRight
                                     size={8}
                                     className="ml-1 text-white/60"
@@ -350,6 +395,19 @@ export default function RadialOrbitalTimeline({
                             })}
                           </div>
                         </div>
+                      )}
+                      {item.href && (
+                        <Button
+                          asChild
+                          variant="ghost"
+                          size="sm"
+                          className="mt-3 w-full justify-between border border-white/20 bg-white/5 text-white hover:bg-white/10 hover:text-white"
+                        >
+                          <RouteLink to={item.href}>
+                            Conhecer projeto
+                            <ArrowRight size={12} aria-hidden="true" />
+                          </RouteLink>
+                        </Button>
                       )}
                     </CardContent>
                   </Card>

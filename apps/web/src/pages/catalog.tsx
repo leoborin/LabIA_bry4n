@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { RadialOrbitalTimelineDemo } from '@/components/ui/demo';
+import { PortfolioOrbit } from '@/components/portfolio-orbit';
 import { LayoutGroup, m, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, Braces, FileCheck2, GitBranch, Search, X } from 'lucide-react';
@@ -34,7 +34,7 @@ export function CatalogPage() {
           <Reveal>
             <p className="eyebrow">
               <span className="eyebrow-line" />
-              UM LABORATÓRIO INDEPENDENTE
+              PORTFÓLIO DE ENGENHARIA E IA
             </p>
             <h1 tabIndex={-1}>
               Da pergunta.
@@ -42,12 +42,12 @@ export function CatalogPage() {
               <span>À evidência.</span>
             </h1>
             <p className="hero-description">
-              Engenharia de software, sistemas e inteligência artificial. Um espaço para construir,
-              entender e verificar.
+              Projetos em engenharia de software, sistemas e inteligência artificial. Arquitetura,
+              decisões e evidências em cada etapa.
             </p>
             <div className="hero-actions">
               <a href="#experimentos" className="button">
-                Explorar laboratórios
+                Explorar projetos
                 <Arrow />
               </a>
               <Link to="/architecture" className="text-link">
@@ -65,7 +65,11 @@ export function CatalogPage() {
           </div>
         </div>
         <Reveal className="hero-object" delay={0.12}>
-          <RadialOrbitalTimelineDemo />
+          <PortfolioOrbit
+            labs={labs}
+            status={catalog.status}
+            denied={catalog.status === 'error' && catalog.error.kind === 'permission'}
+          />
         </Reveal>
       </section>
       <section

@@ -30,3 +30,4 @@ Só acrescentar métricas após uma execução verificável. Usar `not_run` e m�
 | 11/10/2026 | [ADR Cloud Run](2026-10-11-adr-cloud-run.md) | Decisão aceita e documentação conferida. |
 | 11–12/10/2026 | [Primeira casca web](2026-10-11-primeira-casca-web.md) | Build, API Go e navegação verificados; referências e configuração cloud preparadas. |
 | 12/10/2026 | [Timeline orbital fornecida](2026-10-12-timeline-orbital.md) | Tailwind/shadcn integrados; build e interação em Playwright MCP verificados; deploy pendente. |
+| 12/10/2026 | [Portfólio orbital do LabIA](2026-10-12-portfolio-orbital.md) | Sete temas reais, cards e links; 61 verificações gerais e seis de movimento/toque passaram. |

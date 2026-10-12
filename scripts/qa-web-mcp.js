@@ -15,7 +15,7 @@ async (page) => {
   await page.locator('.lab-row').first().waitFor({ timeout: 5000 });
   await page.waitForTimeout(300);
   check(await page.locator('.lab-row').count() === 7, 'Sete slugs retornados pela API real');
-  check(await page.locator('.orbital-node').count() === 5, 'Cinco nós da demo fornecida integrados');
+  check(await page.locator('.orbital-node').count() === 7, 'Sete temas do portfólio integrados ao catálogo real');
   await page.mouse.move(0, 0);
   const initialAngle = await page.locator('.orbital-timeline').getAttribute('data-rotation');
   await page.waitForTimeout(600);
@@ -68,12 +68,12 @@ async (page) => {
   await page.route('**/v1/labs', route => route.fulfill({ status: 403, contentType: 'application/json', body: '{}' }));
   await page.goto(`${origin}/labs`);
   await page.getByText('Acesso não autorizado.').waitFor({ timeout: 3000 });
-  check(await page.locator('.lab-row').count() === 0, 'Permissão negada não expõe conteúdo');
+  check(await page.locator('.lab-row').count() === 0 && await page.locator('.orbital-node').count() === 0, 'Permissão negada não expõe conteúdo');
   await page.unroute('**/v1/labs');
 
   await page.route('**/v1/labs', async route => { await new Promise(resolve => setTimeout(resolve, 1200)); await route.continue().catch(() => {}); });
   await page.goto(`${origin}/labs`);
-  check(await page.getByRole('status', { name: 'Carregando catálogo' }).isVisible(), 'Loading estável antes da resposta');
+  check(await page.getByRole('status', { name: 'Carregando catálogo' }).isVisible() && await page.getByRole('status', { name: 'Carregando projetos' }).isVisible(), 'Loading estável antes da resposta');
   await page.locator('.lab-row').first().waitFor({ timeout: 4000 });
   await page.unroute('**/v1/labs');
 
@@ -86,20 +86,26 @@ async (page) => {
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(`${origin}/labs`);
   await page.locator('.lab-row').first().waitFor({ timeout: 3000 });
-  await page.getByRole('button', { name: 'Explorar Development', exact: true }).focus();
+  await page.getByRole('button', { name: 'Explorar Agentes', exact: true }).focus();
   await page.keyboard.press('Enter');
-  check(await page.getByRole('region', { name: 'Detalhes de Development', exact: true }).textContent().then(text => text.includes('60%') && text.includes('IN PROGRESS')), 'Enter expande card com dados exatos da demo');
+  check(await page.getByRole('region', { name: 'Detalhes de Respostas com fundamento.', exact: true }).textContent().then(text => text.includes('rag-agents') && text.includes('Planejado') && text.includes('RAG') && !text.includes('%') && !text.includes('Energy Level')), 'Enter expande projeto real sem métricas fictícias');
   const reducedAngle = await page.locator('.orbital-timeline').getAttribute('data-rotation');
   await page.waitForTimeout(400);
   check(await page.locator('.orbital-timeline').getAttribute('data-rotation') === reducedAngle && await page.locator('.animate-ping').first().evaluate(e => getComputedStyle(e).animationName === 'none'), 'Movimento reduzido remove rotação e pulsos');
-  await page.locator('.orbital-card').getByRole('button', { name: 'Design', exact: true }).click();
-  check(await page.getByRole('region', { name: 'Detalhes de Design', exact: true }).textContent().then(text => text.includes('90%')), 'Connected Nodes troca seleção e conteúdo');
+  await page.locator('.orbital-card').getByRole('button', { name: 'Documentos', exact: true }).click();
+  check(await page.getByRole('region', { name: 'Detalhes de Documentos que fazem sentido.', exact: true }).textContent().then(text => text.includes('QLoRA') && text.includes('documents-finetuning')), 'Projetos relacionados trocam seleção e conteúdo');
   await page.keyboard.press('Escape');
-  check(await page.locator('.orbital-card').count() === 0 && await page.getByRole('button', { name: 'Explorar Design', exact: true }).evaluate(e => document.activeElement === e), 'Escape fecha detalhe e restaura foco ao nó');
-  await page.getByRole('button', { name: 'Explorar Planning', exact: true }).focus();
+  check(await page.locator('.orbital-card').count() === 0 && await page.getByRole('button', { name: 'Explorar Documentos', exact: true }).evaluate(e => document.activeElement === e), 'Escape fecha detalhe e restaura foco ao nó');
+  await page.getByRole('button', { name: 'Explorar Eventos', exact: true }).focus();
   await page.keyboard.press('Space');
-  check(await page.getByRole('region', { name: 'Detalhes de Planning', exact: true }).isVisible(), 'Space ativa nó por teclado');
+  check(await page.getByRole('region', { name: 'Detalhes de Sistemas que continuam.', exact: true }).isVisible(), 'Space ativa nó por teclado');
   await page.getByRole('button', { name: 'Fechar detalhe', exact: true }).click();
+  await page.getByRole('button', { name: 'Explorar Agentes', exact: true }).click();
+  await page.locator('.orbital-card').getByRole('link', { name: 'Conhecer projeto', exact: true }).click();
+  await page.getByRole('heading', { name: 'Respostas com fundamento.', exact: true }).waitFor();
+  check(page.url().endsWith('/labs/rag-agents'), 'Card abre a página real do projeto');
+  await page.goto(`${origin}/labs`);
+  await page.locator('.lab-row').first().waitFor();
   await page.locator('.method-step').nth(1).click();
   check(await page.locator('#method-1').getAttribute('aria-hidden') === 'false', 'Expansão funciona sem movimento');
 
@@ -108,10 +114,14 @@ async (page) => {
     await page.goto(`${origin}/labs`);
     await page.locator('.lab-row').first().waitFor({ timeout: 3000 });
     check(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `Sem overflow em ${width}px`);
-    await page.getByRole('button', { name: 'Explorar Development', exact: true }).click();
-    const frame = await page.locator('.orbital-timeline').boundingBox();
-    const card = await page.locator('.orbital-card').boundingBox();
-    check(card.x >= frame.x && card.x + card.width <= frame.x + frame.width && card.y >= frame.y && card.y + card.height <= frame.y + frame.height, `Card completo dentro da cena em ${width}px`);
+    await page.evaluate(() => document.fonts.ready);
+    for (const label of ['Eventos', 'Dados', 'Crédito', 'Documentos', 'Agentes', 'Jev', 'Confiabilidade']) {
+      await page.getByRole('button', { name: `Explorar ${label}`, exact: true }).click();
+      const frame = await page.locator('.orbital-timeline').boundingBox();
+      const card = await page.locator('.orbital-card').boundingBox();
+      const controls = await page.locator('.orbital-controls').boundingBox();
+      check(card.x >= frame.x && card.x + card.width <= frame.x + frame.width && card.y >= frame.y && card.y + card.height <= controls.y, `Card de ${label} completo sem cobrir controles em ${width}px`);
+    }
     if (width === 390 || width === 1440) await page.screenshot({ path: `docs/design/previews/orbital-open-${width}.png`, fullPage: width === 390 });
   }
   await page.setViewportSize({ width: 390, height: 844 });

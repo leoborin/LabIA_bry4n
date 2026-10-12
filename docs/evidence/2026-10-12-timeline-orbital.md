@@ -1,5 +1,7 @@
 # Integração do Radial Orbital Timeline fornecido
 
+**Registro histórico:** descreve a integração inicial com os cinco itens da demo. A abertura foi posteriormente adaptada aos [sete temas do portfólio](2026-10-12-portfolio-orbital.md). Capturas ativas e scripts de QA agora representam o portfólio; os resultados abaixo pertencem à revisão `2cb14c2`.
+
 ## Problema, decisão e escopo
 
 O responsável solicitou integrar o componente completo que forneceu, após rejeitar as reinterpretações da abertura. Código de base: [Radial Orbital Timeline — jatin-yadav05 / 21st.dev](https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline), demo e primitives badge/button/card recebidos no pedido. Decisão no [ADR 0003](../adr/0003-timeline-orbital-e-tailwind.md).

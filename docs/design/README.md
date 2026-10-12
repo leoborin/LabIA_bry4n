@@ -30,7 +30,7 @@ Apple, Linear e Vercel foram consultados na web e inspecionados com Playwright M
 | [Linear](https://linear.app/) | Continuidade entre informação e detalhe, densidade organizada e precisão das ações. | Navegação por teclado, paleta de busca e expansão de laboratório com foco preservado. |
 | [Vercel](https://vercel.com/) | Contraste neutro e distinção clara entre assunto, interface e informação técnica. | Metadados discretos, linhas finas e estados operacionais separados de conteúdo de apresentação. |
 | [Project Index — ssychui / 21st.dev](https://21st.dev/@ssychui/components/project-index) | Índice editorial, preview associado ao item e equivalência entre hover e foco. | Lista de laboratórios com conteúdo e visualização próprios. Referência consultada pelo 21st.dev MCP; não instalar seu template ou imagens fictícias. |
-| [Radial Orbital Timeline — jatin-yadav05 / 21st.dev](https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline) | Órbita, núcleo pulsante, seleção e relações entre nós. | Componente e cinco itens de demo fornecidos pelo responsável, integrados na abertura com seus primitives shadcn. Cena preta e gradientes preservados; dados claramente identificados como exemplo. Ajustes de teclado, pausa, movimento reduzido e mobile. |
+| [Radial Orbital Timeline — jatin-yadav05 / 21st.dev](https://21st.dev/@jatin-yadav05/components/radial-orbital-timeline) | Órbita, núcleo pulsante, seleção e relações entre nós. | Componente fornecido pelo responsável, adaptado para os sete temas do portfólio. Cena preta, gradientes e interação preservados; nomes, descrições e tags do catálogo real. Cards em português com estado Planejado, temas relacionados e link do projeto. |
 | [AI Thinking Orb and Input — anark17r / 21st.dev](https://21st.dev/@anark17r/components/ai-thiking-orb-and-input) | Volume, iluminação e resposta de uma esfera interativa. | Referência adicional indicada pelo responsável e consultada no navegador; não implementada em paralelo à timeline fornecida. |
 | [CardStack — Ruixen / 21st.dev](https://21st.dev/@ruixen.ui/components/card-stack) | Camadas em perspectiva e abertura por gesto. | Proposta histórica rejeitada pelo responsável; não reutilizar como direção da abertura atual. |
 
@@ -42,12 +42,28 @@ Proporção criativa solicitada: Apple 40%, Linear 40%, Vercel 20%, como orienta
 - Tarefa: conhecer laboratórios, inspecionar seus planos, entender a arquitetura e consultar a disponibilidade real da API.
 - Superfície: aplicação web de exploração; o objeto primário é o laboratório.
 - Stack: React, TypeScript e Vite; CSS nativo para tokens/layout, Tailwind para o componente fornecido, Motion for React para continuidade e Lucide para ícones. `src/components/ui/`, aliases e `cn` estão configurados.
-- Primeiro viewport: navegação compacta, título à esquerda, timeline orbital à direita e acesso direto ao índice. Status/energia pertencem à demo identificada, sem atribuição ao produto.
+- Primeiro viewport: navegação compacta, título à esquerda, portfólio orbital à direita e acesso direto ao índice. Mostrar propostas reais com estado Planejado; sem datas fictícias ou barras de energia/progresso.
 - Tipografia: Manrope Variable local para display e UI; mono nativa apenas em código, identificadores e pequenos labels. Títulos amplos com tracking contido e corpo legível.
 - Material: fundo branco levemente quente, grafite, cinza e azul como destaque de marca. A cena preta e o gradiente da timeline são uma exceção localizada do componente pedido; não espalhar esse tratamento pelas demais telas.
 - Prova: dados do catálogo retornados pela API e status de saúde consultado de verdade. Planos e diagramas são identificados como previstos; nenhum run ou resultado inventado.
 - Mobile: composição empilhada, navegação compacta e conteúdo de detalhe sem depender de hover. Não miniaturizar o desktop.
 - Evidência de aceitação: build, fluxo de exploração, teclado, erro/retry, vazio por busca, mobile e movimento reduzido via Playwright MCP.
+
+## Conteúdo da órbita do portfólio
+
+Reutilizar `PortfolioOrbit` para representar os temas do LabIA. Labels curtos mantêm a leitura da órbita; o card apresenta nome completo, slug, resumo, tags, categoria e botão Conhecer projeto. Metadados vêm da API; os labels e relações editoriais ficam no adaptador, sem copiar textos do catálogo para outra fixture.
+
+| Label | Projeto |
+|---|---|
+| Eventos | `backend-events` |
+| Dados | `data-platform` |
+| Crédito | `credit-risk` |
+| Documentos | `documents-finetuning` |
+| Agentes | `rag-agents` |
+| Jev | `jev-classification` |
+| Confiabilidade | `reliability-platform` |
+
+Os links de Projetos relacionados aproximam assuntos; não descrevem pipelines funcionando. Jev continua uma comparação opcional de classificação, separado de Documentos. Preservar loading, indisponibilidade e identificação de dados anteriores. A demo original fica isolada do portfólio publicado.
 
 ## Sistema visual
 
