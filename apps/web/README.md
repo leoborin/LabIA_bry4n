@@ -7,9 +7,9 @@
 Ler [AGENTS.md](AGENTS.md) e o [guia visual](../../docs/design/README.md) antes de evoluir a interface. O guia salva referências, capturas, tokens, composição, motion e critérios de interação. A decisão de stack e hospedagem está no [ADR 0002](../../docs/adr/0002-primeira-casca-frontend-e-container-unico.md).
 
 - `src/pages/`: catálogo, plano de laboratório, arquitetura, operação e estados de indisponibilidade/404.
-- `src/components/`: primitives, busca nativa, SVGs e camadas do hero.
+- `src/components/`: primitives, busca nativa e SVGs; `src/components/ui/`: timeline orbital e dependências shadcn fornecidas pelo usuário.
 - `src/api/`: cliente validado, timeout/abort, estado de consulta e dados compartilhados.
-- `src/styles.css`: tokens, layout e componentes; `src/evidence-deck.css`: composição 3D da abertura.
+- `src/styles.css`: tokens, layout e componentes; `src/globals.css`: Tailwind, integração de tokens shadcn e ajustes da timeline.
 - `public/`: favicon autoral; fonte Manrope local entra pelo build.
 
 ## Executar e verificar
@@ -25,14 +25,24 @@ go -C services/api-go run ./cmd/api
 
 Abrir `http://127.0.0.1:8080/labs`. Versões efetivamente verificadas e resultados em [evidências](../../docs/evidence/2026-10-11-primeira-casca-web.md). O build verifica TypeScript e pré-comprime JS/CSS/HTML para o Go servir com gzip. `npm run dev` inicia o Vite em 5173 e usa proxy para a API em 8080.
 
-Para QA via Playwright MCP, usar `scripts/qa-web-mcp.js`, conforme o [runbook](../../docs/runbooks/primeira-casca-cloud-run.md). As referências foram consultadas pelo 21st.dev MCP e pelo navegador; o último acesso MCP ao CardStack exigiu autenticação, e sua prévia pública foi inspecionada sem copiar código ou fotos.
+Para QA via Playwright MCP, usar `scripts/qa-web-mcp.js`, conforme o [runbook](../../docs/runbooks/primeira-casca-cloud-run.md). `scripts/qa-orbital-mcp.js` verifica pulsos, pausa e interação em contexto com toque. A integração da timeline fornecida, suas dependências e os ajustes verificados estão na [evidência de 12/10](../../docs/evidence/2026-10-12-timeline-orbital.md).
+
+## Componentes shadcn e Tailwind
+
+O projeto já usa TypeScript. Tailwind 4.3.3 e seu plugin Vite foram instalados e fixados no lockfile. `components.json` configura `@/components/ui`, que resolve para **`apps/web/src/components/ui/`**, e `@/lib/utils`, que resolve para `src/lib/utils.ts`. Este caminho mantém os imports do componente recebido e a descoberta pelo shadcn sem duplicar a aplicação em um `/components` na raiz do monorepo. `src/components/ui.tsx` continua contendo os primitives anteriores; arquivo e diretório podem coexistir.
+
+`badge.tsx`, `button.tsx` e `card.tsx` contêm as dependências copiadas do pedido. `cn` usa `clsx` e `tailwind-merge`. O alias `@` está configurado no TypeScript e no Vite; não é necessário criar outro projeto ou executar `shadcn init` sobre esta configuração. Novos componentes devem seguir a [instalação oficial para Vite](https://ui.shadcn.com/docs/installation/vite), usando os aliases existentes e revisando o código antes de substituir arquivos.
+
+O Tailwind importa theme e utilities, sem Preflight, porque a aplicação já tem reset próprio. Essa [forma documentada de integração](https://tailwindcss.com/docs/preflight#disabling-preflight) preserva as telas existentes. As classes de pulse, ping, escala, opacidade e gradientes já são geradas pelo Tailwind; não duplicar as definições globais do exemplo, que podem conflitar com seus transforms.
+
+`RadialOrbitalTimeline` recebe `timelineData: TimelineItem[]` e `className` opcional; não exige provider adicional, imagens ou estado global. Cada item declara ícone Lucide, conteúdo, status, energia e IDs relacionados. A abertura usa `demo.tsx` com os cinco itens originais e aviso visível de dados de exemplo. Ao conectar dados reais, fornecer apenas valores efetivamente disponíveis. O catálogo abaixo continua vindo da API Go, com sete laboratórios planejados.
 
 ## Escopo verificado
 
 - [x] Catálogo público, filtros, busca e vazio com recuperação: `/labs`.
 - [x] Detalhe do plano, slugs preservados e estado planejado: `/labs/:slug`.
 - [x] Arquitetura e consulta real do processo HTTP: `/architecture`, `/operations`.
-- [x] Camadas 3D, botão, arraste, range, foco por teclado e alternativa de movimento reduzido.
+- [x] Timeline orbital fornecida: rotação, cards, relações, pausa, teclado e movimento reduzido.
 - [x] Loading, erro, timeout, permissão negada, retry, 404 e layouts de 320/390/768/1440 px.
 - [x] Dependências fixadas, lockfile real e build de produção executado.
 - [ ] Login OIDC, sessão e autorização.
@@ -40,4 +50,4 @@ Para QA via Playwright MCP, usar `scripts/qa-web-mcp.js`, conforme o [runbook](.
 - [ ] Telemetria, métricas de experimentos e comparação de resultados.
 - [ ] Publicação e smoke test da URL Cloud Run.
 
-`/runs/:id` e `/runs/:id/results` explicam a indisponibilidade. Não há execução simulada, métricas fictícias ou armazenamento de dados de usuário nesta versão.
+`/runs/:id` e `/runs/:id/results` explicam a indisponibilidade. A timeline é uma demo visual identificada; seus status e percentuais não representam execuções ou métricas do LabIA. Não há armazenamento de dados de usuário nesta versão.

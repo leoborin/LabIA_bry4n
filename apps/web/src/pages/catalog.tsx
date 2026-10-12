@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { EvidenceDeck } from '../components/evidence-deck';
+import { RadialOrbitalTimelineDemo } from '@/components/ui/demo';
 import { LayoutGroup, m, useReducedMotion } from 'motion/react';
 import { Link } from 'react-router-dom';
 import { ArrowDown, Braces, FileCheck2, GitBranch, Search, X } from 'lucide-react';
@@ -65,7 +65,7 @@ export function CatalogPage() {
           </div>
         </div>
         <Reveal className="hero-object" delay={0.12}>
-          <EvidenceDeck />
+          <RadialOrbitalTimelineDemo />
         </Reveal>
       </section>
       <section

@@ -1,5 +1,7 @@
 # Primeira casca do LabIA — implementação e verificação
 
+**Registro histórico:** esta evidência descreve a entrega em camadas do commit `ac3e085`. A abertura foi posteriormente substituída pela [timeline orbital fornecida](2026-10-12-timeline-orbital.md), conforme o [ADR 0003](../adr/0003-timeline-orbital-e-tailwind.md). As capturas ativas no guia visual refletem a versão atual.
+
 ## Problema, decisão e escopo
 
 O responsável pediu uma casca inicial publicada em Cloud Run, com frontend limpo, interações refinadas, referências Apple/Linear/Vercel, uso de 21st.dev e Playwright MCP e preservação do padrão para novas páginas. Em 12/10, pediu mais impacto na abertura, com uma animação HTML/CSS/JS que evitasse a aparência comum de interfaces de IA.

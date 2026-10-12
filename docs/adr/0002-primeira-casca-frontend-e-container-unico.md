@@ -2,7 +2,7 @@
 
 - **Status:** aceito.
 - **Data:** 11/10/2026.
-- **Atualização:** 12/10/2026, incluindo camadas tipográficas interativas na abertura.
+- **Atualização:** 12/10/2026; interação orbital e Tailwind registrados no [ADR 0003](0003-timeline-orbital-e-tailwind.md).
 - **Escopo:** primeira casca navegável; complementa o [ADR 0001](0001-cloud-run-para-demo-sob-demanda.md).
 - **Implementação:** integração local verificada; publicação cloud pendente de projeto e orçamento autorizados.
 
@@ -25,6 +25,8 @@ Entregar catálogo com sete slugs preservados, detalhe de plano, arquitetura, op
 Adotar a direção documentada no [guia visual](../design/README.md): branco quente, grafite, cinzas e um azul de destaque; Manrope local, índice editorial e visualizações SVG próprias. Apple, Linear e Vercel orientam composição e acabamento; o Project Index do 21st.dev orienta a relação lista/preview. A consulta ocorreu via web, 21st.dev MCP e Playwright MCP.
 
 Motion for React cuida de entrada, continuidade de seleção, profundidade do mapa e expansão; CSS cuida de feedback local. Scroll nativo, poucos momentos de movimento, controles sempre acessíveis e alternativa estática em `prefers-reduced-motion`. Diálogo nativo para busca com foco contido, Escape, setas e Enter. As regras de novas páginas ficam em `apps/web/AGENTS.md`.
+
+O [ADR 0003](0003-timeline-orbital-e-tailwind.md) substitui a proposta de camadas tipográficas na abertura pelo componente Radial Orbital Timeline fornecido pelo responsável, acrescentando Tailwind e primitives shadcn. O restante da casca e a decisão de container único permanecem os mesmos. A demo usa dados de exemplo explicitamente identificados.
 
 ## Perfil de publicação preparado
 

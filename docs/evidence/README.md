@@ -29,3 +29,4 @@ Só acrescentar métricas após uma execução verificável. Usar `not_run` e m�
 | 11/10/2026 | [Comparativo GCP](2026-10-11-comparativo-deploy-gcp.md) | Alternativas e inventário de leitura; fatura real não conciliada. |
 | 11/10/2026 | [ADR Cloud Run](2026-10-11-adr-cloud-run.md) | Decisão aceita e documentação conferida. |
 | 11–12/10/2026 | [Primeira casca web](2026-10-11-primeira-casca-web.md) | Build, API Go e navegação verificados; referências e configuração cloud preparadas. |
+| 12/10/2026 | [Timeline orbital fornecida](2026-10-12-timeline-orbital.md) | Tailwind/shadcn integrados; build e interação em Playwright MCP verificados; deploy pendente. |
