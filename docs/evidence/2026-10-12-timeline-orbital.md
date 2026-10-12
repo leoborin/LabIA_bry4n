@@ -11,7 +11,7 @@ Integrados cena preta, núcleo com gradiente/pulsos, órbita em rotação, cinco
 - Data: `2026-10-12`, fuso `America/Sao_Paulo`.
 - Ambiente: Windows/PowerShell, Node `22.21.0`, npm `10.9.4`, build Vite servido pelo processo Go em `http://127.0.0.1:8080`.
 - Commit base: `674ef52da5bd58520b564554d2daad958d2a02eb`.
-- A revisão de implementação será registrada após criar o commit; não foi publicado em Cloud Run.
+- Revisão de implementação: [`2cb14c2059d5db7d0c4703af06ab29b60b9baa74`](https://github.com/leoborin/LabIA_bry4n/commit/2cb14c2059d5db7d0c4703af06ab29b60b9baa74), criada após revisão de 35 arquivos. Este registro do hash é um commit documental posterior; publicação em Cloud Run não foi executada.
 - QA: Chromium `154.0.8037.58` via Playwright MCP, usando API real e mocks temporários apenas para estados de falha.
 
 | Dependência | Versão verificada |
@@ -39,6 +39,8 @@ npm --prefix apps/web run format:check
 ```
 
 Instalação pelo lockfile passou: 60 pacotes instalados. Build TypeScript/Vite e formatação passaram com código zero. Licenças de 21 dependências de runtime foram incluídas, além dos avisos estáticos de Go, shadcn e timeline. A página de origem identifica a timeline como MIT; os avisos e atribuição ficam em `apps/web/public/licenses/` e no código.
+
+Revisão documental: nove arquivos Markdown conferidos em UTF-8, 44 links locais válidos e fences consistentes. `git diff --cached --check` passou. Busca de padrões de chaves privadas/tokens no conteúdo preparado não sinalizou arquivos. Capturas próprias foram inspecionadas; prints de VM e `.tools/` não foram preparados para commit. O lockfile inclui os binários opcionais Linux/musl de Tailwind e Lightning CSS necessários às bases propostas; isso não comprova um build do container.
 
 Playwright MCP:
 
