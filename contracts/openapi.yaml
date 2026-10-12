@@ -1,0 +1,85 @@
+openapi: 3.0.3
+info:
+  title: LabIA — API da primeira casca
+  version: 0.1.0-shell
+  description: Catálogo público e saúde do processo. Runs, autenticação e persistência permanecem pendentes.
+paths:
+  /healthz:
+    get:
+      operationId: getHealth
+      summary: Consultar a saúde do processo HTTP
+      responses:
+        "200":
+          description: Processo respondeu; não representa disponibilidade de workers ou de um banco.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Health"
+  /v1/labs:
+    get:
+      operationId: getLabCatalog
+      summary: Consultar os sete planos versionados
+      responses:
+        "200":
+          description: Metadados públicos dos laboratórios; nenhum está executável nesta versão.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Catalog"
+components:
+  schemas:
+    Health:
+      type: object
+      required: [status, service, version, phase]
+      properties:
+        status: { type: string, enum: [ok] }
+        service: { type: string, enum: [labia-api] }
+        version: { type: string, enum: [0.1.0-shell] }
+        phase: { type: string, enum: [shell] }
+    Catalog:
+      type: object
+      required: [version, phase, labs]
+      properties:
+        version: { type: string, enum: [v1] }
+        phase: { type: string, enum: [shell] }
+        labs:
+          type: array
+          minItems: 7
+          maxItems: 7
+          items:
+            $ref: "#/components/schemas/Lab"
+    Lab:
+      type: object
+      required:
+        [
+          slug,
+          name,
+          category,
+          summary,
+          question,
+          tags,
+          deliverables,
+          status,
+          available,
+        ]
+      properties:
+        slug:
+          type: string
+          enum:
+            [
+              backend-events,
+              data-platform,
+              credit-risk,
+              documents-finetuning,
+              rag-agents,
+              jev-classification,
+              reliability-platform,
+            ]
+        name: { type: string }
+        category: { type: string, enum: [Sistemas, Dados, IA] }
+        summary: { type: string }
+        question: { type: string }
+        tags: { type: array, items: { type: string } }
+        deliverables: { type: array, items: { type: string } }
+        status: { type: string, enum: [planned] }
+        available: { type: boolean, enum: [false] }

@@ -4,7 +4,7 @@ Portfólio de engenharia de software, sistemas distribuídos, dados e inteligên
 
 O projeto será um laboratório independente com console web, API e workers. Cada entrega deverá demonstrar três competências: **explicar** o mecanismo, **decidir** entre alternativas e **verificar** o resultado com evidências. A proposta é desenvolver capacidade técnica para discutir decisões de arquitetura, confiabilidade, qualidade de dados, IA aplicada e custo.
 
-**Estado atual:** esqueleto inicial do repositório. A estrutura e os guias estão preparados; toda a implementação do produto permanece **pendente**. Ainda não há aplicação executável, dependências instaladas, modelos treinados, métricas medidas ou infraestrutura publicada.
+**Estado atual:** primeira casca navegável verificada localmente: console React/TypeScript/Vite, catálogo público e health em Go. Os sete laboratórios, autenticação, runs, workers e persistência permanecem **pendentes**. Nenhum modelo foi treinado ou experimento medido. O deploy aguarda definição de projeto e orçamento.
 
 ## Ideia e arquitetura planejada
 
@@ -19,6 +19,10 @@ Começar com poucos processos e módulos bem definidos. A separação em serviç
 O LabIA é independente do Evolua: o acompanhamento do aprendizado pode apontar para suas evidências, mas não substitui a execução dos experimentos. O plano de referência organiza a evolução em **56 semanas**, de 05/10/2026 a 31/10/2027.
 
 Veja o [guia de arquitetura planejada](docs/architecture/README.md).
+
+A hospedagem foi escolhida no [ADR 0001 — Cloud Run](docs/adr/0001-cloud-run-para-demo-sob-demanda.md). O [ADR 0002](docs/adr/0002-primeira-casca-frontend-e-container-unico.md) define a primeira casca com console e API mínima no mesmo container. As alternativas e estimativas estão no [comparativo de deploy e custos GCP](docs/architecture/comparativo-deploy-gcp.md).
+
+O [guia visual](docs/design/README.md) salva referências Apple, Linear, Vercel e 21st.dev, capturas próprias e regras de futuras páginas. O [runbook](docs/runbooks/primeira-casca-cloud-run.md) explica desenvolvimento e publicação; as [evidências](docs/evidence/2026-10-11-primeira-casca-web.md) registram o que foi executado.
 
 ## Laboratórios previstos
 
@@ -57,9 +61,11 @@ docs/                    Arquitetura, ADRs, RFCs, runbooks e portfólio
 docs/evidence/weeks/      Evidências de w01 a w56
 ```
 
-Diretórios ainda vazios usam `.gitkeep`. Os manifests de dependências, contratos, migrações e configurações executáveis serão adicionados durante a implementação, com versões verificadas.
+Diretórios ainda vazios usam `.gitkeep`. Frontend, módulo Go e contrato mínimo já têm manifests verificados; migrações e contratos de runs serão acrescentados por etapas.
 
-## Checklist resumido — tudo pendente
+## Checklist resumido — implementação completa pendente
+
+A casca inclui catálogo, detalhe de plano, arquitetura e consulta de saúde. Os itens abaixo representam o produto completo; a navegação inicial não conclui os fluxos de execução.
 
 - [ ] Preparar ambiente local, fixar versões e implementar os serviços do Compose.
 - [ ] Construir o console web com as seis telas e estados acessíveis.
@@ -85,6 +91,14 @@ Diretórios ainda vazios usam `.gitkeep`. Os manifests de dependências, contrat
 
 Leia este README e [AGENTS.md](AGENTS.md). Escolha uma fatia pequena do checklist, implemente-a e registre sua verificação em [docs/evidence](docs/evidence/README.md).
 
-`.env.example` apresenta apenas variáveis planejadas e valores de exemplo. `compose.yaml` ainda não define serviços. O `Makefile` oferece somente ajuda. O quickstart executável será documentado quando a primeira integração real estiver pronta.
+Para executar a casca:
+
+```powershell
+npm --prefix apps/web ci --no-audit --no-fund
+npm --prefix apps/web run build
+go -C services/api-go run ./cmd/api
+```
+
+Requisitos verificados: Node 22.21.0, npm 10.9.4 e Go 1.27.2 no PATH. Abrir `http://127.0.0.1:8080/labs`. Ver demais comandos e limites no runbook. `.env.example` contém variáveis futuras; `compose.yaml` ainda não define serviços e o `Makefile` oferece somente ajuda.
 
 A estrutura foi baseada no guia local `999module_study/LabIA.md`. As pastas `.github-cleanup/`, `.tools/` e `999module_study/` permanecem fora do versionamento. Segredos, datasets, pesos, checkpoints e state de infraestrutura também ficam fora do Git.

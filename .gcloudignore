@@ -1,0 +1,37 @@
+# Allowlist: somente o código necessário ao container.
+*
+!Dockerfile
+!.dockerignore
+!.gcloudignore
+!apps/
+apps/*
+!apps/web/
+apps/web/*
+!apps/web/package.json
+!apps/web/package-lock.json
+!apps/web/tsconfig.json
+!apps/web/vite.config.ts
+!apps/web/index.html
+!apps/web/src/
+!apps/web/src/**
+!apps/web/public/
+!apps/web/public/**
+!apps/web/scripts/
+!apps/web/scripts/**
+!services/
+services/*
+!services/api-go/
+services/api-go/*
+!services/api-go/go.mod
+!services/api-go/cmd/
+!services/api-go/cmd/**
+!services/api-go/internal/
+!services/api-go/internal/**
+# Defesa adicional caso apareçam arquivos locais dentro das pastas permitidas.
+**/.env
+**/.env.*
+**/*.pem
+**/*.key
+**/credentials*.json
+**/service-account*.json
+**/.gitkeep

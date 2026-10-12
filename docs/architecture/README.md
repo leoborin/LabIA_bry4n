@@ -1,6 +1,6 @@
 # Arquitetura planejada
 
-**Estado: pendente de implementação.** O desenho abaixo representa a direção do projeto, sem comprovar serviços em execução.
+**Estado: implementação parcial.** Console e API mínima funcionam localmente; o desenho abaixo representa a arquitetura futura. Runs, worker, OIDC e PostgreSQL ainda não estão disponíveis.
 
 ```mermaid
 flowchart LR
@@ -19,6 +19,12 @@ flowchart LR
 O primeiro ambiente será local, com API, worker CPU, PostgreSQL e IdP no Compose. Na evolução de eventos, estudar Kafka local e compará-lo a Pub/Sub na referência GCP. BigQuery será uma camada analítica posterior.
 
 A trilha também prevê um experimento inicial de API Python e comando/worker Go para estudar processos e HTTP, antes da organização final com API Go e workers Python.
+
+## Decisão de hospedagem
+
+O [ADR 0001](../adr/0001-cloud-run-para-demo-sob-demanda.md) define Cloud Run Service, Jobs e PostgreSQL externo para a demo futura. O [ADR 0002](../adr/0002-primeira-casca-frontend-e-container-unico.md) complementa a escolha para o primeiro incremento: SPA React e API Go mínima no mesmo container, sem banco ou workers. A casca foi verificada localmente; deploy pendente de projeto/orçamento.
+
+O [comparativo de deploy e custos GCP](comparativo-deploy-gcp.md) preserva a análise de Compute Engine, App Engine, Cloud Run, GKE, funções e frontend, com estimativas separadas de valores efetivamente cobrados.
 
 ## Fronteiras
 

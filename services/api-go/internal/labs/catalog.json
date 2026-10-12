@@ -1,0 +1,83 @@
+{
+  "version": "v1",
+  "phase": "shell",
+  "labs": [
+    {
+      "slug": "backend-events",
+      "name": "Sistemas que continuam.",
+      "category": "Sistemas",
+      "summary": "Eventos, concorrência e recuperação. Um trabalho aceito precisa chegar a um estado verificável.",
+      "question": "Como garantir que uma tarefa continue, mesmo quando o sistema falha?",
+      "tags": ["Go", "Eventos", "Idempotência"],
+      "deliverables": ["Estados de execução e contratos de eventos", "Outbox, leases e recuperação de falhas", "Evidências de concorrência e idempotência"],
+      "status": "planned",
+      "available": false
+    },
+    {
+      "slug": "data-platform",
+      "name": "Dados com trajetória.",
+      "category": "Dados",
+      "summary": "Da origem ao resultado: contratos, qualidade e linhagem para tornar cada transformação explicável.",
+      "question": "É possível confiar em um dado sem conhecer o caminho que ele percorreu?",
+      "tags": ["Python", "Contratos", "Linhagem"],
+      "deliverables": ["Pipeline de ingestão e contratos de dados", "Verificações de qualidade e versionamento", "Manifestos, hashes e linhagem documentada"],
+      "status": "planned",
+      "available": false
+    },
+    {
+      "slug": "credit-risk",
+      "name": "Risco, com contexto.",
+      "category": "IA",
+      "summary": "Classificação tabular, calibração e avaliação. A qualidade de uma previsão vai além da acurácia.",
+      "question": "Quando a probabilidade de um modelo merece confiança?",
+      "tags": ["Classificação", "Calibração", "Avaliação"],
+      "deliverables": ["Benchmark histórico reproduzível", "Calibração e avaliação por recortes", "Data card, model card e limitações"],
+      "status": "planned",
+      "available": false
+    },
+    {
+      "slug": "documents-finetuning",
+      "name": "Documentos que fazem sentido.",
+      "category": "IA",
+      "summary": "Extração estruturada de documentos sintéticos. Comparar o modelo base com um adapter QLoRA.",
+      "question": "O fine-tuning melhora a extração ou apenas muda a forma do erro?",
+      "tags": ["Documentos", "QLoRA", "Extração"],
+      "deliverables": ["Documentos sintéticos e schemas de extração", "Comparação entre modelo base e adapter", "Avaliação e relatório de erros"],
+      "status": "planned",
+      "available": false
+    },
+    {
+      "slug": "rag-agents",
+      "name": "Respostas com fundamento.",
+      "category": "IA",
+      "summary": "Recuperar evidências, citar fontes e reconhecer quando a resposta ainda não está disponível.",
+      "question": "Como fazer um agente responder com evidência e saber quando se abster?",
+      "tags": ["RAG", "Agentes", "Evidências"],
+      "deliverables": ["Recuperação com referências rastreáveis", "Citações, abstensão e ferramentas autorizadas", "Avaliação de respostas e falhas"],
+      "status": "planned",
+      "available": false
+    },
+    {
+      "slug": "jev-classification",
+      "name": "Comparar antes de escolher.",
+      "category": "IA",
+      "summary": "Classificação de tickets com baseline local e uma comparação externa opcional, em experimento próprio.",
+      "question": "Quando um classificador externo justifica seu custo e suas dependências?",
+      "tags": ["Tickets", "Baseline", "Jev opcional"],
+      "deliverables": ["Baseline local de classificação", "Comparação Jev opcional e independente", "Critérios de qualidade, custo e decisão"],
+      "status": "planned",
+      "available": false
+    },
+    {
+      "slug": "reliability-platform",
+      "name": "Confiabilidade por projeto.",
+      "category": "Sistemas",
+      "summary": "Observar, entender e recuperar. Capacidade, SLOs e decisões operacionais sustentadas por evidência.",
+      "question": "Como saber que um sistema está saudável e recuperá-lo quando não está?",
+      "tags": ["Observabilidade", "SLO", "Recuperação"],
+      "deliverables": ["Telemetria e objetivos de serviço", "Cenários de incidentes e rollback", "Backup, restauração e runbooks verificados"],
+      "status": "planned",
+      "available": false
+    }
+  ]
+}

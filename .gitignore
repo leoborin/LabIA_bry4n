@@ -1,6 +1,7 @@
 # Pastas locais solicitadas: ferramentas e material de referência
 /.github-cleanup/
 /.tools/
+/.playwright-mcp/
 /999module_study/
 
 # Variáveis de ambiente e credenciais
