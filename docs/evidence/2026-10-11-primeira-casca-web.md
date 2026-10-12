@@ -14,7 +14,7 @@ Disponível localmente: catálogo dos sete slugs com filtro/busca, plano do labo
 - Commit base: `f079ecaec4968153861a3935c65d6105b23311cf`.
 - Sistema: Windows/PowerShell; testes de navegador no Chromium `154.0.8037.58` via Playwright MCP.
 - SDK Go portátil mantido em `.tools`, fora do Git; arquivo oficial verificado por SHA-256 `1314008898bd40df77af4b014f777f08873dbdfbcd3d92308728ee03304fe04f`.
-- Revisão de implementação: [`ac3e08544e05aea6329042b9dd3299ab30c9eb5d`](https://github.com/leoborin/LabIA_bry4n/commit/ac3e08544e05aea6329042b9dd3299ab30c9eb5d), criada após revisão de 64 arquivos de código, configuração, documentação e capturas. Este registro posterior acrescenta o hash real da revisão verificada. Push será conferido separadamente; deploy segue pendente.
+- Revisão de implementação: [`ac3e08544e05aea6329042b9dd3299ab30c9eb5d`](https://github.com/leoborin/LabIA_bry4n/commit/ac3e08544e05aea6329042b9dd3299ab30c9eb5d), criada após revisão de 64 arquivos de código, configuração, documentação e capturas. O registro do hash foi salvo em `e8952e01e9ef64f9e1a6504eb25d426f5c1cad0f`; ambas as revisões foram enviadas a `origin/main` e a igualdade com o remoto foi confirmada por `git ls-remote origin refs/heads/main` em 12/10/2026. Deploy segue pendente.
 
 | Ferramenta/dependência | Versão efetivamente usada |
 |---|---|
