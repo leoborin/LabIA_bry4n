@@ -12,7 +12,7 @@ A abertura recebeu texto de portfólio e ação Explorar projetos. A cena e as a
 
 - Data: `2026-10-12`, fuso `America/Sao_Paulo`.
 - Commit base: `4478b2c934c3aa239362def8b8565e6924bd5fb1`.
-- Revisão de implementação: a registrar após criar o commit.
+- Revisão de implementação: [`2eb1ddb9f2cfa0776f2b6bfd10728ce0ec6ea44f`](https://github.com/leoborin/LabIA_bry4n/commit/2eb1ddb9f2cfa0776f2b6bfd10728ce0ec6ea44f), com 20 arquivos revisados. Este registro do hash é um commit documental posterior.
 - Windows/PowerShell; Node `22.21.0`, npm `10.9.4`, React `19.3.0`, TypeScript `7.0.2`, Vite `8.3.4`, Tailwind `4.3.3`.
 - Chromium `154.0.8037.58` via Playwright MCP; build servido pelo Go em `http://127.0.0.1:8080/labs`.
 - Dependências, lockfile, API e contratos não foram alterados nesta entrega; versões instaladas conforme a [evidência anterior](2026-10-12-timeline-orbital.md).
